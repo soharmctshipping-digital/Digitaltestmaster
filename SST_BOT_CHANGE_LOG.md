@@ -21,19 +21,37 @@ each section.
 
 ## 1. Changes to the live bot
 
-SST 1 was edited and published on 19 Nov 2026 with the owner's approval (details below). No
-other workflow has been changed. No data table row has been added or changed. No WhatsApp message or email has been sent. No
+SST 1 was edited, published and rolled back on 19 Nov 2026 (details below); it is live on its
+earlier version and holds the changes as a draft. No other workflow has been changed. No data table row has been added or changed. No WhatsApp message or email has been sent. No
 Meta setting, form or template has been touched. One sheet cell has been changed:
 
 | Date | System | What changed | Why | Asked for by owner? |
 |---|---|---|---|---|
 | 19 Nov 2026 | Google Sheet "SST WhatsApp Leads", tab FAQ, cell B9 (answer to "Do you do customs clearance?") | Was: "Yes, for imports and exports by sea, air and road." Now: "Yes. We clear imports by sea, air and road as a service on its own. For exports, we handle the export clearance as part of shipping your cargo, so you don't need to book it separately." | The FAQ and the bot's prompt disagreed. The owner confirmed export clearance is done as part of handling the export, not offered as a separate option. | Yes |
 
-### SST 1 changes, PUBLISHED 19 Nov 2026 at 09:14 UTC on the owner's instruction
+### SST 1 changes: published, rolled back, now a DRAFT again
 
-SST 1 now runs version `c998927d-15d7-467c-9605-17e5fea724c0`. The version before this work
-was `1ed21e80-703c-4c40-ad56-9c7d53a36833`; to go back, publish that version from n8n's
-version history. The rows below are what changed between the two.
+Timeline on 19 Nov 2026 (UTC):
+
+- 09:14 Published version `c998927d-15d7-467c-9605-17e5fea724c0` on the owner's instruction.
+- 09:17 and 09:18 Two test runs with dummy numbers (executions 1892 and 1893), each with a
+  real AI call. Both stalled at the AI step.
+- 09:20 Rolled back: version `1ed21e80-703c-4c40-ad56-9c7d53a36833` (the one from before
+  this work) was published again. **That is the live version now.**
+- Cause, read from execution 1892: Claude answered "Schema is too complex". Making the 18
+  lead fields optional in the answer format is what did it. The requests first timed out at
+  45 seconds each, then returned that error.
+- Fix in the draft: every field is required again, as in the published version, and the AI
+  returns an empty value for lead fields that have not changed. Not yet published.
+
+No real customer wrote in during the six minutes the new version was live; the only runs in
+that window were the two dummy ones.
+
+Lesson for whoever continues: any change to the AI answer format must be tested with one real
+AI call (a dummy number through the published workflow, or a separate test workflow) before
+the owner tests from a phone. n8n's pinned-data test does not call the AI.
+
+The rows below are the changes held in the draft.
 
 | Date | Step | What changed in the draft | Owner's item |
 |---|---|---|---|
@@ -55,9 +73,11 @@ with pinned data and the dummy number 999990007101: greeting answered from code,
 nothing sent to WhatsApp. Not yet checked: real AI answers with the new prompt and answer
 format. That needs the draft published and a real test chat.
 
-Test rows created by the dry run (dummy phone 999990007101, safe to delete at go-live):
-one row in `sst_chats` (id 17), one in `sst_seen_messages` (message id wamid.DRYRUN-A1) and
-one in `sst_conversation_log`.
+Test rows created by the dry runs (dummy phones 999990007101, ...102 and ...103, safe to
+delete at go-live): `sst_chats` id 17; `sst_seen_messages` message ids wamid.DRYRUN-A1, -B1
+and -C1 (B1 and C1 are unanswered, so the watchdog may try them once); one row in
+`sst_conversation_log`; and possibly "AI did not answer" entries in the Issues Log from the
+two failed runs.
 
 The code for every draft change is kept as patch scripts in `bot_build/`, with an offline
 test rig. Plan and status: `SST_BOT_FIX_PLAN.md`.
