@@ -107,7 +107,18 @@ What v23 changes against v22:
 Not in v23: pre-filling the form from what the customer typed. That needs data passed into
 the form from "Read Claude answer" and through every screen; left for a later version.
 
-SST 1 "Read message" is being updated (draft) to read the v23 answers; it still reads v22.
+Status at 11:11 UTC, 19 Nov:
+- T8 "Form definition" holds the v23 code (T8 version `407e9243-...`, T8 is unpublished as before).
+- v23 exists in Meta as a DRAFT form, id `990727460359037`, created by T8 "Run form setup"
+  (execution 2007). Meta returned no validation errors. T8 "Form preview" now points at it.
+- It is NOT published and SST 1 does not send it. Customers still get v22.
+- SST 1 has a draft (version `e2bb7ee6-...`, not live) in which "Read message" reads the v23
+  answers as well as v22.
+- To finish after the owner's review: publish the form with T8 "Run form publish" (set the id
+  in "Forms to publish"; a published form cannot be edited), set the new id in SST 1
+  "Build Claude request" (`FORM.service` / `PORT_SEARCH_FORM.id`), change the summary's closing
+  line to allow a typed "yes" or "okay", publish SST 1, test with a dummy number and a phone.
+- To drop the draft form instead: put its id in T8 "Failed draft ids" and run "Run draft cleanup".
 
 No real customer wrote in during the six minutes the new version was live; the only runs in
 that window were the two dummy ones.
