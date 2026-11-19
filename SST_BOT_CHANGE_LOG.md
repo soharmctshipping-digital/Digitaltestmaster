@@ -79,17 +79,24 @@ How each route is cut (this is the list to reverse at go-live):
 | SST 1 | "Send to salesperson" (calls SST W) | Disabled, with a note "TESTING PHASE" | Enable |
 | SST 1 | "From the sales team?" | Condition forced to `false && $json.is_sales`, so staff numbers are treated as customers | Set back to `$json.is_sales` |
 | SST 1 | "Build Claude request" | `FORM.live` is true, so every English-speaking customer gets the forms; a testers list also exists | Review |
-| SST 2 | "Prepare WhatsApp for salesperson" | No incoming connection | Reconnect (probably from "PDF ready?" true) |
-| SST 2 | "Prepare complaint alert" | No incoming connection, so "WhatsApp the manager" and "Email the manager" are dead | Reconnect (probably from "Existing shipment or complaint?" true) |
-| SST 2 | "WhatsApp the salesperson (no draft)" | No incoming connection | Reconnect (probably from "Prepare lead without draft") |
+| SST 2 | "Prepare WhatsApp for salesperson" | No incoming connection | Reconnect from "PDF ready?", true output. **Confirmed** from execution 384 (16 Nov) |
+| SST 2 | "Prepare complaint alert" | No incoming connection, so "WhatsApp the manager" and "Email the manager" are dead | Reconnect from "Existing shipment or complaint?", true output. **Confirmed** from executions 181, 1187 and 1233. "WhatsApp the manager" and "Email the manager" both hang off it |
+| SST 2 | "WhatsApp the salesperson (no draft)" | No incoming connection | Reconnect, probably from "Prepare lead without draft". **Not confirmed**: this step never ran in any stored execution |
 | SST 2 | "Email lead to salesperson", "Email lead (no draft)" | Recipient hard-coded to the test address | Point back at the salesperson's email from "Pick salesperson" |
-| SST C | "Read holidays" (start of the reminder chain) | No incoming connection; the schedule only feeds "Read chats" | Reconnect the schedule to "Read holidays" |
+| SST C | "Read holidays" (start of the reminder chain) | No incoming connection; the schedule only feeds "Read chats" | Reconnect "Every hour, 08:00-17:00" to "Read holidays". **Confirmed** by the restore note saved on the SST C version |
 | SST L | "WhatsApp Aabel (SST W)" | Disabled | Enable |
 | SST P | whole workflow | Unpublished; fully wired otherwise | Publish |
 | Sales Team tab | WhatsApp and email columns | Test values; real ones in the notes column | Restore real values |
 
-The three "probably from" source nodes in SST 2 are inferred from the flow. The original
-wiring is not recorded anywhere this account can read, so check them against the restore doc.
+How the wiring was confirmed (19 Nov, read-only): n8n keeps only the latest version of each
+workflow, so version history could not show the old links. The stored executions from before
+the lockdown could: each step records which step fed it. The lockdown itself was the version
+named "TESTING: record leads only, send nothing", published 17 Nov at 10:15 UTC.
+
+One link is still a guess: "WhatsApp the salesperson (no draft)". It did not run in any
+execution n8n still holds. Its sibling "Email lead (no draft)" is still connected, and the
+step feeding that is the most likely source. Check it against the restore doc or the
+12 November backup before go-live.
 
 What still sends during testing:
 
