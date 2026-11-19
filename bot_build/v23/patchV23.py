@@ -60,6 +60,12 @@ s = rep(s, "  DT('via_customs', 'road', [ta('delivery_address_road_customs', 'De
            "  DT('via_customs', 'road', [F('equip_customs', 'breakbulk', [{ type: 'TextBody', text: 'For break bulk arriving by road, please have the commercial invoice and the packing list ready. After you send this form I will ask you to upload them here in the chat.' }]), ta('delivery_address_road_customs', 'Delivery location', true, 'Full address in Oman, with area and city')]),")
 s = rep(s, "{ type: 'TextBody', text: 'A packing list is required for break bulk cargo. After you send this form I will ask you to upload it here in the chat.' }", "{ type: 'TextBody', text: 'Please have the packing list ready for break bulk cargo. After you send this form I will ask you to upload it here in the chat.' }")
 s = rep(s, "{ type: 'TextBody', text: 'The commercial invoice and the packing list are required for road freight. After you send this form I will ask you to upload both here in the chat.' }", "{ type: 'TextBody', text: 'Please have the commercial invoice and the packing list ready for road freight. After you send this form I will ask you to upload them here in the chat.' }")
+# the "A few details" page was empty for transit with vehicles or break bulk: the trucks question moves there, so it never is
+s = rep(s, "['breakbulk', 'Break bulk or loose cargo']]),\n    radio('trucks_transit', 'Do you need our trucks?', [['yes', 'Yes'], ['no', 'No, we have our own']])]),",
+           "['breakbulk', 'Break bulk or loose cargo']])]),")
+s = rep(s, "  // transit\n  DT('equip_transit', 'containers', [radio('size_transit', 'Container size', SIZE), radio('ctype_transit', 'Container type', CTYPE)]),",
+           "  // transit\n  DT('equip_transit', 'containers', [radio('size_transit', 'Container size', SIZE), radio('ctype_transit', 'Container type', CTYPE)]),\n  M('transit', [radio('trucks_transit', 'Do you need our trucks?', [['yes', 'Yes'], ['no', 'No, we have our own']])]),")
+# build check: no page may be empty for any combination of the choices that decide what is shown
 # name + build check (item 4)
 s = rep(s, "const flow = { version: '7.0', screens };\nreturn [{ json: { name: 'SST service form v22 required sizes', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];",
 r'''const flow = { version: '7.0', screens };
@@ -78,6 +84,18 @@ const check = (sid, ch) => { let n = 0; for (const c of ch) { n += 1;
 } return n; };
 const counts = {};
 for (const sc of screens) { counts[sc.id] = check(sc.id, sc.layout.children); if (counts[sc.id] > 100) problems.push(sc.id + ' has ' + counts[sc.id] + ' components (limit 100)'); if (sc.title.length > 30) problems.push(sc.id + ': screen title is over 30 characters'); }
+// No page may come up empty, whatever the customer chose on the earlier pages.
+{
+  const vis = (ch, data) => { let n = 0; for (const c of ch) { if (c.type === 'Footer') continue; if (c.type === 'If') { const m = c.condition.match(/^\$\{(data|form)\.(\w+)\} (==|!=) '(.*)'$/); if (!m || m[1] === 'form') continue; const v = data[m[2]]; if (m[3] === '==' ? v === m[4] : v !== m[4]) n += vis(c.then, data); } else n += 1; } return n; };
+  const combos = [];
+  for (const st of ['fcl', 'lcl', 'bulk', 'roro']) for (const d of ['import', 'export']) combos.push({ mode: 'sea', sea_type: st, direction_sea: d });
+  for (const d of ['import', 'export']) combos.push({ mode: 'air', direction_air: d }, { mode: 'project', direction_project: d });
+  for (const d of ['import', 'export', 'oman']) combos.push({ mode: 'land', direction_land: d });
+  for (const v of ['sea', 'air', 'road']) combos.push({ mode: 'customs', via_customs: v });
+  for (const e of ['containers', 'vehicles', 'breakbulk']) combos.push({ mode: 'transit', equip_transit: e });
+  combos.push({ mode: 'warehousing' }, { mode: 'containers' }, { mode: 'agency' });
+  for (const c of combos) for (const sc of screens) if (sc.id !== 'SERVICE' && vis(sc.layout.children, c) === 0) problems.push(sc.id + ' would be empty for ' + JSON.stringify(c));
+}
 if (problems.length) throw new Error('Form not built. Fix these first: ' + problems.join(' | '));
-return [{ json: { name: 'SST service form v23 Sohar Port and Oman ports', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];''')
+return [{ json: { name: 'SST service form v23b Sohar Port and Oman ports', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];''')
 open('v23_form_definition.js', 'w').write(s)

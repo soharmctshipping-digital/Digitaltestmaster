@@ -90,8 +90,7 @@ const p2 = [
   F('point_air_customs', 'other', [ti('point_other_air_customs', 'Which place?', true)]),
   F('point_road_customs', 'other', [ti('point_other_road_customs', 'Which place?', true)]),
   M('transit', [radio('entry_transit', 'Entering Oman at', [['sohar', 'Sohar Port'], ['duqm', 'Duqm Port'], ['salalah', 'Salalah Port'], ['muscat_air', 'Muscat Airport'], ['wajajah', 'Al Wajajah border (Hatta)'], ['hafeet', 'Khatm Al Shikla / Hafeet', 'Border on the Al Ain side'], ['rub_al_khali', 'Rub\' Al Khali border', 'Saudi Arabia'], ['not_sure', 'Not sure']]),
-    radio('equip_transit', 'What is moving?', [['containers', 'Containers'], ['vehicles', 'Vehicles (Roll-on/Roll-off)'], ['breakbulk', 'Break bulk or loose cargo']]),
-    radio('trucks_transit', 'Do you need our trucks?', [['yes', 'Yes'], ['no', 'No, we have our own']])]),
+    radio('equip_transit', 'What is moving?', [['containers', 'Containers'], ['vehicles', 'Vehicles (Roll-on/Roll-off)'], ['breakbulk', 'Break bulk or loose cargo']])]),
   M('warehousing', [radio('wtype_warehousing', 'Type of storage', [['dry', 'General (indoor dry)'], ['cold', 'Temperature-controlled'], ['bonded', 'Free zone or bonded', 'Duty not yet paid'], ['not_sure', 'Not sure']]),
     radio('location_warehousing', 'Preferred location', [['muscat', 'Muscat (Rusayl)'], ['sohar_fz', 'Sohar Free Zone'], ['not_sure', 'Not sure']]),
     ti('duration_warehousing', 'How long for?', true, 'text', 'For example 3 months')]),
@@ -133,6 +132,7 @@ const p3 = [
   DT('via_customs', 'road', [F('equip_customs', 'breakbulk', [{ type: 'TextBody', text: 'For break bulk arriving by road, please have the commercial invoice and the packing list ready. After you send this form I will ask you to upload them here in the chat.' }]), ta('delivery_address_road_customs', 'Delivery location', true, 'Full address in Oman, with area and city')]),
   // transit
   DT('equip_transit', 'containers', [radio('size_transit', 'Container size', SIZE), radio('ctype_transit', 'Container type', CTYPE)]),
+  M('transit', [radio('trucks_transit', 'Do you need our trucks?', [['yes', 'Yes'], ['no', 'No, we have our own']])]),
   // warehousing
   M('warehousing', [checks('services_warehousing', 'Services needed', [['handling', 'Handling in and out'], ['pickpack', 'Pick and pack'], ['inventory', 'Inventory management'], ['delivery', 'Local delivery'], ['offloading', 'Container offloading']], 'Choose any that apply')]),
   // containers
@@ -200,5 +200,17 @@ const check = (sid, ch) => { let n = 0; for (const c of ch) { n += 1;
 } return n; };
 const counts = {};
 for (const sc of screens) { counts[sc.id] = check(sc.id, sc.layout.children); if (counts[sc.id] > 100) problems.push(sc.id + ' has ' + counts[sc.id] + ' components (limit 100)'); if (sc.title.length > 30) problems.push(sc.id + ': screen title is over 30 characters'); }
+// No page may come up empty, whatever the customer chose on the earlier pages.
+{
+  const vis = (ch, data) => { let n = 0; for (const c of ch) { if (c.type === 'Footer') continue; if (c.type === 'If') { const m = c.condition.match(/^\$\{(data|form)\.(\w+)\} (==|!=) '(.*)'$/); if (!m || m[1] === 'form') continue; const v = data[m[2]]; if (m[3] === '==' ? v === m[4] : v !== m[4]) n += vis(c.then, data); } else n += 1; } return n; };
+  const combos = [];
+  for (const st of ['fcl', 'lcl', 'bulk', 'roro']) for (const d of ['import', 'export']) combos.push({ mode: 'sea', sea_type: st, direction_sea: d });
+  for (const d of ['import', 'export']) combos.push({ mode: 'air', direction_air: d }, { mode: 'project', direction_project: d });
+  for (const d of ['import', 'export', 'oman']) combos.push({ mode: 'land', direction_land: d });
+  for (const v of ['sea', 'air', 'road']) combos.push({ mode: 'customs', via_customs: v });
+  for (const e of ['containers', 'vehicles', 'breakbulk']) combos.push({ mode: 'transit', equip_transit: e });
+  combos.push({ mode: 'warehousing' }, { mode: 'containers' }, { mode: 'agency' });
+  for (const c of combos) for (const sc of screens) if (sc.id !== 'SERVICE' && vis(sc.layout.children, c) === 0) problems.push(sc.id + ' would be empty for ' + JSON.stringify(c));
+}
 if (problems.length) throw new Error('Form not built. Fix these first: ' + problems.join(' | '));
-return [{ json: { name: 'SST service form v23 Sohar Port and Oman ports', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];
+return [{ json: { name: 'SST service form v23b Sohar Port and Oman ports', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];
