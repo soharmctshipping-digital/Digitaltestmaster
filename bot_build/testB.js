@@ -1,5 +1,5 @@
 const { run } = require('./rig.js');
-const base = { reply:'x', language:'en', stage:'collecting', options:'', confirmed_now:false, cancel_requested:false, speak_to:{requested:false,person:''}, new_enquiry:false, notify_sales:false, out_of_scope:false, support:{is_support:false,summary:''}, escalate:{needed:false,category:'',summary:''}, lead:{}, documents_received:'', last_question:'' };
+const base = { reply:'x', language:'en', stage:'collecting', options:'', confirmed_now:false, cancel_requested:false, speak_to:{requested:false,person:''}, new_enquiry:false, notify_sales:false, out_of_scope:false, support:{is_support:false,summary:''}, escalate:{needed:false,category:'',summary:''}, lead:{}, last_question:'' };
 const form = '[The customer filled in the service form]\nService: Land freight\nWhere: Into Oman, from another GCC country\nFrom: Dubai\nTo: Sohar\nCargo: Tiles\nDangerous goods: Yes';
 const known = { name:'Ravi Kumar', company:'Acme LLC', customer_type:'company', preferred_contact:'WhatsApp', email:'r@acme.com' };
 (async()=>{
@@ -7,7 +7,7 @@ const known = { name:'Ravi Kumar', company:'Acme LLC', customer_type:'company', 
   let r = await run('final', { msg:{content:form, type:'interactive'}, chat:{stage:'collecting', history:'[]', lead_json: JSON.stringify(known)}, answer: Object.assign({}, base, { reply:'Please send the commercial invoice, packing list and MSDS.', lead:{ service:'Land freight', origin:'Dubai', destination:'Sohar', commodity:'Tiles', special_needs:'Import; dangerous goods' } }) });
   console.log('1', JSON.stringify(r.lead)); const dyn = r.full; 
   // 2. customer sends one file; AI identifies packing list; returns only that
-  r = await run('final', { msg:{content:'[The customer sent a document (file id 1; type application/pdf; name pl.pdf)]', new_files:1}, chat:{stage:'collecting', history: r.full.history_json, lead_json: r.full.lead_json}, files:[{name:'pl.pdf', mime:'application/pdf', link:'https://d/1'}], answer: Object.assign({}, base, { reply:'Received.', documents_received:'packing list' }) });
+  r = await run('final', { msg:{content:'[The customer sent a document (file id 1; type application/pdf; name pl.pdf)]', new_files:1}, chat:{stage:'collecting', history: r.full.history_json, lead_json: r.full.lead_json}, files:[{name:'pl.pdf', mime:'application/pdf', link:'https://d/1'}], answer: Object.assign({}, base, { reply:'Received.', lead:{documents_received:'packing list'} }) });
   console.log('2', JSON.stringify(r.lead));
   // 3. says no more docs -> summary
   r = await run('final', { msg:{content:'I dont have the others, please help'}, chat:{stage:'collecting', history: r.full.history_json, lead_json: r.full.lead_json}, answer: Object.assign({}, base, { reply:'Summary... Is everything correct? Tap *Yes, confirm*, or tell me what to change.', stage:'awaiting_confirmation', options:'confirm' }) });

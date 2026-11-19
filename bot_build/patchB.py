@@ -45,11 +45,11 @@ s = repline(s, "  '   b2) When a message starts with “[The customer filled in 
 s = repline(s, "  '   c) Without the forms (Arabic,",
   q("   c) Only when the forms cannot be used (Arabic, ENQUIRY FORMS says not available, or the customer says they cannot open the form): ask for what is still missing in short messages of at most THREE questions each, skipping anything already known, in this order: who they are (name; company or individual; how they would like to be contacted: WhatsApp, call or email); what they need (service; import or export; for imports the shipping terms: sea EXW or FOB, air or land EXW or FCA); then the shipment (from, to, cargo, quantity, weight, volume or dimensions, cargo-ready date). Ask for the supplier’s name and address only if the terms are EXW, and about door delivery only if it matters for their service."))
 s = repline(s, "  '4b. Documents (this comes BEFORE the summary in step 4)",
-  q("4b. Documents (this comes BEFORE the summary in step 4). Documents are asked for firmly but are NEVER a condition for confirming an enquiry. Once the service form details have arrived, ask ONCE: if DOCUMENTS NEEDED below names any documents, ask for exactly those by name, as PDF or photo files in this chat, and say the sales team needs them to prepare an accurate quotation; if it says none, ask once, warmly, whether they would like to share any documents (for example the commercial invoice or packing list). If the customer says they do not have them, will send them later, asks for help with them, or just carries on without sending them, accept that in one short sentence (the sales team will follow it up with them) and go straight to the summary in step 4. When a file arrives, say briefly that it has been received and saved; if DOCUMENTS STILL TO COME below names something, mention it once, otherwise ask them to let you know when they have finished sending. When they say they have finished (done, that is all, no more) or decline, send the summary. Never ask for the same document twice, and never hold back the summary or the confirmation because a document is missing: the system tells the sales team which documents were not supplied. In documents_received, list the documents you can clearly identify among the files sent in this enquiry so far (for example “commercial invoice, packing list, MSDS”), or \"\" if none. Files that arrive after the enquiry is confirmed are saved automatically, so just thank them briefly."))
+  q("4b. Documents (this comes BEFORE the summary in step 4). Documents are asked for firmly but are NEVER a condition for confirming an enquiry. Once the service form details have arrived, ask ONCE: if DOCUMENTS NEEDED below names any documents, ask for exactly those by name, as PDF or photo files in this chat, and say the sales team needs them to prepare an accurate quotation; if it says none, ask once, warmly, whether they would like to share any documents (for example the commercial invoice or packing list). If the customer says they do not have them, will send them later, asks for help with them, or just carries on without sending them, accept that in one short sentence (the sales team will follow it up with them) and go straight to the summary in step 4. When a file arrives, say briefly that it has been received and saved; if DOCUMENTS STILL TO COME below names something, mention it once, otherwise ask them to let you know when they have finished sending. When they say they have finished (done, that is all, no more) or decline, send the summary. Never ask for the same document twice, and never hold back the summary or the confirmation because a document is missing: the system tells the sales team which documents were not supplied. In lead.documents_received, list every document you can clearly identify among the files sent in this enquiry so far (for example “commercial invoice, packing list, MSDS”); leave it out if there are none. Files that arrive after the enquiry is confirmed are saved automatically, so just thank them briefly."))
 s = repline(s, "  'OUTPUT: return ONLY one JSON object",
   q("OUTPUT: return ONLY one JSON object, with no text before or after it:"))
 s = rep(s, '"additional_info":""},"last_question":"the question you just asked, if any"}\',',
-           '"additional_info":""},"documents_received":"","last_question":"the question you just asked, if any"}\',')
+           '"additional_info":"","documents_received":""},"last_question":"the question you just asked, if any"}\',')
 s = repline(s, "  'In lead, include every detail known so far",
   q("In lead, return ONLY the fields that are new or have changed in this message, and leave every other field out: the system keeps everything already in DETAILS KNOWN SO FAR.") + "\n" +
   q("") + "\n" +
@@ -67,38 +67,19 @@ s = rep(s, "const system = [{ type: 'text', text: staticText, cache_control: { t
 // Answer format. The lead fields are optional: the AI returns only what is new or changed and "Read Claude answer" keeps the rest.
 const str = { type: 'string' }, bool = { type: 'boolean' };
 const obj = (props, required) => ({ type: 'object', additionalProperties: false, required, properties: props });
-const LEAD_KEYS = ['name', 'company', 'customer_type', 'email', 'preferred_contact', 'service', 'origin', 'destination', 'commodity', 'weight_kg', 'volume_or_dims', 'packages', 'container_type_qty', 'incoterm', 'cargo_ready_date', 'special_needs', 'additional_info'];
+const LEAD_KEYS = ['name', 'company', 'customer_type', 'email', 'preferred_contact', 'service', 'origin', 'destination', 'commodity', 'weight_kg', 'volume_or_dims', 'packages', 'container_type_qty', 'incoterm', 'cargo_ready_date', 'special_needs', 'additional_info', 'documents_received'];
 const leadProps = {}; for (const k of LEAD_KEYS) leadProps[k] = str;
 const schema = obj({
   reply: str, language: { type: 'string', enum: ['en', 'ar'] }, stage: { type: 'string', enum: ['greeting', 'collecting', 'awaiting_confirmation', 'confirmed', 'support', 'faq', 'promotional'] }, options: str,
   confirmed_now: bool, cancel_requested: bool, speak_to: obj({ requested: bool, person: str }, ['requested', 'person']), new_enquiry: bool, notify_sales: bool, out_of_scope: bool,
   support: obj({ is_support: bool, summary: str }, ['is_support', 'summary']), escalate: obj({ needed: bool, category: str, summary: str }, ['needed', 'category', 'summary']),
-  lead: obj(leadProps, []), documents_received: str, last_question: str
-}, ['reply', 'language', 'stage', 'options', 'confirmed_now', 'cancel_requested', 'speak_to', 'new_enquiry', 'notify_sales', 'out_of_scope', 'support', 'escalate', 'lead', 'documents_received', 'last_question']);
+  lead: obj(leadProps, []), last_question: str
+}, ['reply', 'language', 'stage', 'options', 'confirmed_now', 'cancel_requested', 'speak_to', 'new_enquiry', 'notify_sales', 'out_of_scope', 'support', 'escalate', 'lead', 'last_question']);
 """)
 s = rep(s, "  body: { model: 'claude-sonnet-5-5', max_tokens: 4000, system, messages: apiMsgs }\n",
            "  body: { model: 'claude-sonnet-5-5', max_tokens: 2000, system, messages: apiMsgs, output_config: { format: { type: 'json_schema', schema } } }\n")
 open('final_Build_Claude_request.js', 'w').write(s)
 
-# ---------------- Read Claude answer ----------------
-s = open('new_Read_Claude_answer.js').read()
-s = rep(s, "const triggerHandover = a.confirmed_now === true && prevStage !== 'confirmed' && !cancelNow;\n",
-"""const triggerHandover = a.confirmed_now === true && prevStage !== 'confirmed' && !cancelNow;
-// Documents: what the AI could identify among the files is remembered, and anything still missing is named for the sales team.
-{
-  const seen = String(lead.documents_received || '').split(',').concat(String(a.documents_received || '').split(',')).map(x => x.trim()).filter(Boolean);
-  const uniq = seen.filter((x, i) => seen.findIndex(y => y.toLowerCase() === x.toLowerCase()) === i);
-  if (uniq.length) lead.documents_received = uniq.join(', ');
-  const needed = String(lead.documents_needed || '');
-  const missing = needed && needed !== 'none' ? needed.split(', ').filter(d => !new RegExp(d.indexOf('invoice') >= 0 ? 'invoice' : d.indexOf('packing') >= 0 ? 'packing' : 'msds|safety data', 'i').test(uniq.join(', '))) : [];
-  lead.documents_missing = missing.join(', ');
-  if (triggerHandover) {
-    const rest = String(lead.additional_info || '').replace(/^Documents not supplied: [^.]*\\.\\s*/, '');
-    lead.additional_info = (missing.length ? 'Documents not supplied: ' + missing.join(', ') + '. ' : '') + rest;
-  }
-}
-""")
-open('final_Read_Claude_answer.js', 'w').write(s)
 import shutil
-shutil.copy('new_Read_message.js', 'final_Read_message.js'); shutil.copy('new_Tell_customer_they_are_alerted.js', 'final_Tell_customer_they_are_alerted.js')
+shutil.copy('orig_Read_Claude_answer.js', 'final_Read_Claude_answer.js'); shutil.copy('new_Read_message.js', 'final_Read_message.js'); shutil.copy('new_Tell_customer_they_are_alerted.js', 'final_Tell_customer_they_are_alerted.js')
 print('ok')

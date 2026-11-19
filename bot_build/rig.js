@@ -18,10 +18,11 @@ async function run(prefix, sc) {
   if (bj.route !== 'claude') return { route: bj.route, text: bj.text, reason: bj.reason, menu_update: bj.menu_update, forward_text: bj.forward_text };
   nodes['Build Claude request'] = node([bj]);
   let input;
-  if (bj.canned) input = node([bj]);
+  if (bj.canned) input = node((await load(prefix+'_Fixed_reply_as_answer.js')(node([]), $, DateTime, ()=>({}))).map(x=>x.json));
   else if (sc.answer) input = node([{ content:[{type:'text', text: JSON.stringify(sc.answer)}] }]);
   else return { route:'claude', needsAI:true, content: bj.customer_text, prev_stage: bj.prev_stage, lead: bj.prev_lead, body: bj.body };
-  const r = (await read(input, $, DateTime, ()=>({})))[0].json;
+  let r = (await read(input, $, DateTime, ()=>({})))[0].json;
+  if (prefix==='final') { nodes['Read Claude answer'] = node([r]); nodes['Check for newer messages'] = node([]); r = (await load('final_Still_the_newest.js')(node([]), $, DateTime, ()=>({})))[0].json; }
   return { route:'claude', canned: Boolean(bj.canned), reply:r.reply, stage:r.stage, lead:r.lead, kind: r.interactive && r.interactive.interactive.type, flow: r.interactive && r.interactive.interactive.action && r.interactive.interactive.action.parameters && r.interactive.interactive.action.parameters.flow_cta, reference:r.reference, handover:r.trigger_handover, support:r.trigger_support, full:r };
 }
 module.exports = { run };
