@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__n8n__execute_workflow",
+      "mcp__n8n__test_workflow",
+      "mcp__n8n__get_workflow_execution",
+      "mcp__n8n__search_workflow_executions"
+    ]
+  }
+}
