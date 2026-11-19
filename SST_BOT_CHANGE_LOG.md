@@ -73,9 +73,41 @@ Timeline on 19 Nov 2026 (UTC):
   transit enquiry taken to confirmation (reference SST-261119-VD75) kept the position, the
   cargo value and "urgent" on the lead and used the fixed summary layout.
 - SST 3 published with item 9 (version `b9994a9c-84dc-4748-8d0a-1d937cc0145a`).
-- SST 2: item 9 is saved as a DRAFT only. Publishing it was blocked by the session's safety
-  check, so SST 2 still runs version `f0c84462-...`. The owner can publish it in n8n (one
-  click), or approve it again in chat.
+- SST 2 published with item 9 on the owner's instruction (version
+  `386fb9f1-50d0-49eb-82b0-c5f996fd3384`; before: `f0c84462-...`). No testing switch touched.
+
+### Form v23 (in progress, 19 Nov 2026)
+
+Owner's go-ahead: "start v23". Source and patch: `bot_build/v23/`. Not yet created in Meta,
+not published, not sent to anyone. Customers still get v22 (`29363394833300676`).
+
+What v23 changes against v22:
+- Sea export: port of loading is Sohar Port, shown as text, not asked. Only the port of
+  discharge is picked.
+- Sea import: port of loading is picked as before; port of discharge is a list of Oman ports
+  (Sohar Port pre-selected, Duqm Port, Salalah Port, Port Sultan Qaboos (Muscat), Not sure).
+- One shared overseas-port picker for both directions. New answer fields: `far_region`,
+  `far_sea_<region>`, `far_port_sea`, `pod_oman_sea` (the old `pol_*` / `pod_*` are gone).
+- Road borders by name (Al Wajajah, Khatm Al Shikla / Hafeet, Rub' Al Khali, Not sure) for
+  customs and transit, in place of "A road border".
+- Agency: full port names and a "Which port?" box under "Another port".
+- LCL and air: package size and volume are required but "not sure" is accepted (volume is now
+  a text box) and the helper text says so.
+- "Customs clearance by us?" is asked for imports only (sea, air, land, project).
+- "Dangerous goods?" is no longer asked for RoRo.
+- Land freight: "Largest piece size" is optional.
+- Temperature-controlled storage asks for the temperature.
+- Wording: "Smaller shipments, charged by volume" (no "shared container"); "I will collect
+  from your yard" / "Deliver to my site"; document notes say "please have ... ready", not
+  "required".
+- Build check in T8 "Form definition": stops with a clear message if a screen has more than
+  100 components or a label, option or helper text is over WhatsApp's length limits.
+- Component counts (limit 100): BASICS 88 (was 99), DETAILS 95 (was 99), FINAL 88 (was 87).
+
+Not in v23: pre-filling the form from what the customer typed. That needs data passed into
+the form from "Read Claude answer" and through every screen; left for a later version.
+
+SST 1 "Read message" is being updated (draft) to read the v23 answers; it still reads v22.
 
 No real customer wrote in during the six minutes the new version was live; the only runs in
 that window were the two dummy ones.
