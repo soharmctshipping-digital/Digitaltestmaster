@@ -1,0 +1,131 @@
+# SST WhatsApp bot: change log from the second Claude account
+
+Purpose: a running record of everything done to the Sohar Shipping WhatsApp bot from this
+Claude account, so the original account can pick up exactly where things stand.
+
+- Bot: Sohar Shipping WhatsApp enquiry bot, n8n instance `sstcwa.app.n8n.cloud`
+- Route: A (same n8n, same Google files, same Meta app; only the builder seat changed)
+- Standing rule from the owner: make no change that affects the workflows unless told to
+- Log started: 19 November 2026
+
+## How to read this
+
+- **Section 1** lists changes to the live bot (n8n, Google Sheets the bot uses, Drive, Meta).
+  This is the part the other account must know about.
+- **Section 2** lists things created alongside the bot that the bot does not depend on.
+- **Section 3** lists read-only checks, for context.
+- **Section 4** lists open questions.
+
+Each entry has a date, what was done, where, and why. Newest entries go at the bottom of
+each section.
+
+## 1. Changes to the live bot
+
+**None so far.** No workflow has been edited, published, unpublished, executed or tested from
+this account. No data table row has been added or changed. No WhatsApp message or email has
+been sent. No Meta setting, form or template has been touched.
+
+| Date | System | What changed | Why | Asked for by owner? |
+|---|---|---|---|---|
+| (nothing yet) | | | | |
+
+### Writes made by the owner through the dashboard (not by Claude)
+
+| Date | System | What changed | Note |
+|---|---|---|---|
+| 18 Nov 2026 | Google Sheet "SST WhatsApp Leads", tab Issues Log, columns I to K | At least one issue was marked resolved from the SST Sales Pipeline dashboard | The dashboard's only write. It runs when someone picks "Yes, resolved" or "No, back to pending". It writes `resolved`, `resolved_by` and `resolved_at` on that issue's row. |
+
+## 2. Created alongside the bot (the bot does not depend on these)
+
+| Date | What | Where | Note |
+|---|---|---|---|
+| 18 Nov 2026 | SST Sales Pipeline dashboard | Claude artifact, private to the owner | Reads the Leads sheet live (Leads, Dashboard, Sales Team, Issues Log, Quotes, Unfinished, Conversations, Internal team conversation). Three views: Sales pipeline, Customers and bot, Conversations (WhatsApp-style reader). Read-only apart from the issue resolve above. |
+| 18 Nov 2026 | Customs Clearance Rate Card | Claude document, private | Built from 49 past quotations. Not yet updated from the full set. |
+| 18 Nov 2026 | `SST_Customs_Clearance_and_Container_Rates.xlsx` | This repository, and a Claude Sheet of the same name | 3,002 priced clearance lines from 333 quotations, a container sales sheet, and a "Fixed rates" sheet of 136 charge points (added 19 Nov). |
+| 19 Nov 2026 | Claude Code cloud environment "Digitaltestmaster" | Claude Code settings | Allows the host `assets-proxy.anthropic.com`. Created while trying to open a share link. Has no effect on the bot. Safe to delete. |
+| 19 Nov 2026 | This change log | This repository | |
+
+Nothing in Google Drive was created, moved, renamed or deleted. The quotation PDFs, tariffs
+and the Master Index were only read.
+
+## 3. Read-only checks (no effect on the bot)
+
+19 November 2026, dry run to prove access:
+
+- n8n: listed all 21 workflows. SST 1 (`NTuIx1AbdFxb5chR`), SST 2 (`XGdyZLt2Hw0NFS1P`) and
+  SST D (`BONxnz7uR0rWlOCw`) are published; T8 (`7EJgEb3mWFYdoYC2`) is unpublished.
+- n8n: listed all 11 data tables and their columns. All match the migration notes.
+- n8n: read the `sst_state` table (5 rows: `template_doc_id`, `rr_pointer`, three
+  `sales_last_in_*` timestamps).
+- n8n: read the SST W workflow definition.
+- Google Sheets: read the Leads header row (40 columns, A to AN, `documents_folder` in AN)
+  and the Sales Team tab.
+- A fuller read-only audit of the testing-phase switches across SST 1, 2, 3, C, D, E, G, L
+  and P was started on 19 November. Results to be added below when it finishes.
+
+### Testing-phase audit, 19 November 2026 (read-only)
+
+All of SST 1, 2, 3, C, D, E, G, L, P and W were read in full. Nothing was run or changed.
+Phone numbers and email addresses are left out of this file on purpose; they are in the
+workflows and on the Sales Team tab.
+
+**Verdict.** No WhatsApp message can reach a salesperson's real number, and no email can
+reach a real salesperson's address. Every published route into SST W is cut.
+
+How each route is cut (this is the list to reverse at go-live):
+
+| Workflow | Node | State now | To restore |
+|---|---|---|---|
+| SST 1 | "Send to salesperson" (calls SST W) | Disabled, with a note "TESTING PHASE" | Enable |
+| SST 1 | "From the sales team?" | Condition forced to `false && $json.is_sales`, so staff numbers are treated as customers | Set back to `$json.is_sales` |
+| SST 1 | "Build Claude request" | `FORM.live` is true, so every English-speaking customer gets the forms; a testers list also exists | Review |
+| SST 2 | "Prepare WhatsApp for salesperson" | No incoming connection | Reconnect (probably from "PDF ready?" true) |
+| SST 2 | "Prepare complaint alert" | No incoming connection, so "WhatsApp the manager" and "Email the manager" are dead | Reconnect (probably from "Existing shipment or complaint?" true) |
+| SST 2 | "WhatsApp the salesperson (no draft)" | No incoming connection | Reconnect (probably from "Prepare lead without draft") |
+| SST 2 | "Email lead to salesperson", "Email lead (no draft)" | Recipient hard-coded to the test address | Point back at the salesperson's email from "Pick salesperson" |
+| SST C | "Read holidays" (start of the reminder chain) | No incoming connection; the schedule only feeds "Read chats" | Reconnect the schedule to "Read holidays" |
+| SST L | "WhatsApp Aabel (SST W)" | Disabled | Enable |
+| SST P | whole workflow | Unpublished; fully wired otherwise | Publish |
+| Sales Team tab | WhatsApp and email columns | Test values; real ones in the notes column | Restore real values |
+
+The three "probably from" source nodes in SST 2 are inferred from the flow. The original
+wiring is not recorded anywhere this account can read, so check them against the restore doc.
+
+What still sends during testing:
+
+- Customers get the full flow from SST 1 (replies, buttons, forms), the SST C follow-up
+  nudge for unfinished enquiries, and the SST G holding reply.
+- SST 1 "WhatsApp Vishnu: credit out" messages one fixed personal number if the Claude
+  credit runs out. It does not go through SST W.
+- SST 2 lead emails go to the test address.
+- SST E "Email the error" goes to a fixed company Gmail address on any workflow failure.
+  This is not the test address.
+
+Things to know:
+
+- SST C being published is consistent with testing: its only live path is the customer
+  nudge. The salesperson and manager reminders in it are disconnected, so `sst_chasers` is
+  not being updated.
+- Complaints, escalations and callbacks currently raise no notification at all, not even to
+  the test address. They are only written to the Leads sheet.
+- SST 1 "Tell customer they are alerted" is still live, so some customers are told a named
+  salesperson has been alerted when nothing was sent.
+- `sst_outbox` holds two unsent rows from 16 November addressed to a real salesperson's
+  number. They are older than the 3-day pickup window and the sender is gated off.
+- SST 1 "Who sent it?" contains a backup list of the four real staff numbers, used only if
+  the Sales Team tab reads empty. Inert while the gate above is false.
+- SST P would send to whatever the Sales Team tab holds if published or run by hand.
+- SST 1 form id in use: `29363394833300676` (published). Blocked number list has one entry.
+  Webhook path: `sst-bot`.
+
+## 4. Open questions for the owner
+
+1. **Restore doc and migration doc not found.** Nothing in Google Drive or Docs under this
+   account matches them. They may live only in the original Claude account's project.
+2. **SST C is published.** The setup notes say SST C and SST M stay unpublished until
+   go-live. SST M is unpublished; SST C is live and running. Left as found.
+3. **SST P and SST F are unpublished.** Possibly intended. Left as found.
+4. **Route A steps 2 to 5** were missing from the setup notes that were pasted in.
+5. **Sales Team tab is in test mode.** All four salespeople point at one test WhatsApp
+   number and one test email; the real ones are parked in the notes column. Whether any
+   WhatsApp message can still reach a real salesperson is being checked (see section 3).
