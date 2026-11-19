@@ -92,3 +92,17 @@ goods?" on RoRo; project form asks the same place twice; "Largest piece size" re
 land freight; CBM required for LCL and air; temperature field for cold storage.
 
 Still not started: 3, 4, 5 (v23), 6, 7, 8, 10, 11.
+
+## Status at 11:31 UTC, 19 Nov 2026
+
+Live: SST 1 version c9e84b8f (all approved SST 1 fixes, items 9 and 15, form v23). SST 2 and
+SST 3 with item 9. Form v23 published in Meta, id 1400138701949428.
+
+Done from the original list: 1/16 (except pre-fill), 2, 3, 4, 5, 9, 12, 13, 15, 17, 18, the
+in-run AI retry, Decisions 2, 3, 4, 5. Dropped: 14.
+
+Not started: pre-filling the form from typed details (needs a v24 and a change to
+"Read Claude answer"); 6 (webhook signature; owner must type the app secret into n8n);
+7 (lead-write retry); 8 (file saving); 10 (three-hourly combined run); 11 (test-row list).
+
+Housekeeping: delete the superseded draft form 990727460359037 in Meta when the owner agrees.

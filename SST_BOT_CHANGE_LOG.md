@@ -126,8 +126,19 @@ Status at 11:11 UTC, 19 Nov:
   is not blank) was refused by Meta because the name was already taken (execution 2011). It
   was not needed: sample values only affect the preview. T8 "Form definition" holds that
   latest source; give the next build a new name.
-- SST 1 is being switched to the new form id next; until that is published customers still
-  get v22.
+- 11:29 **SST 1 published as version `c9e84b8f-0203-4b5c-9eff-200f117124c0`. This is the live
+  version now.** It sends form v23 (`1400138701949428`), reads the v23 answers ("Read
+  message" still reads v22 answers too), and the summary ends "Tap Yes, confirm (or just
+  reply yes or okay), or tell me what to change." To go back to v22: publish SST 1 version
+  `f0bdb21b-...` (it sends form `29363394833300676`, which is still published in Meta).
+- 11:29 to 11:31 Tests on dummy numbers 999990007401 and ...402, all passed: the bot sends
+  form id 1400138701949428; a v23 sea export reads as "Port of loading: Sohar Port, Oman /
+  Port of discharge: Shanghai, China" with no port question; a v23 sea LCL import reads as
+  Hamburg to Duqm Port with "not sure" for size and volume accepted and not queried; the
+  summary uses the fixed layout and the new closing line. Neither chat was confirmed, so no
+  new test lead.
+- Not tested: the v23 screens on a real phone (answers were injected). The owner should run
+  one enquiry from a phone.
 - SST 1 has a draft (version `e2bb7ee6-...`, not live) in which "Read message" reads the v23
   answers as well as v22.
 - To finish after the owner's review: publish the form with T8 "Run form publish" (set the id
