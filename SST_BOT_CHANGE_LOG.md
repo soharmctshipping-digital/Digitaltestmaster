@@ -111,7 +111,15 @@ Status at 11:11 UTC, 19 Nov:
 - T8 "Form definition" holds the v23 code (T8 version `407e9243-...`, T8 is unpublished as before).
 - v23 exists in Meta as a DRAFT form, id `990727460359037`, created by T8 "Run form setup"
   (execution 2007). Meta returned no validation errors. T8 "Form preview" now points at it.
-- It is NOT published and SST 1 does not send it. Customers still get v22.
+- 11:18 The owner found the third page ("A few details") empty. Cause: Transit with Vehicles
+  or Break bulk had no question on that page (v22 has the same gap). Fixed as v23b: "Do you
+  need our trucks?" moved from page 2 to page 3, and the build check now refuses a form in
+  which any page could be empty. New draft form in Meta: `1400138701949428` (execution 2009,
+  no validation errors). **This is the v23 to review and publish.** T8 "Form definition" is at
+  T8 version `5f0e02d7-...`.
+- The first draft, `990727460359037`, is superseded and can be deleted (T8 "Failed draft
+  ids" + "Run draft cleanup"). Left in place until the owner says so.
+- Neither draft is published and SST 1 does not send them. Customers still get v22.
 - SST 1 has a draft (version `e2bb7ee6-...`, not live) in which "Read message" reads the v23
   answers as well as v22.
 - To finish after the owner's review: publish the form with T8 "Run form publish" (set the id
