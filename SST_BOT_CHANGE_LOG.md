@@ -41,6 +41,25 @@ save; none has been published.
 | 19 Nov 2026 | "Read message" | Ports and clearance points carry full names ("Sohar Port", "Duqm Port", "Salalah Airport"); customs cargo labels match the form; reefer temperature gets "°C"; warehouse location keeps "Muscat (Rusayl)"; a named port under "Another port" is read if the form sends one | Decision 4, item 5 |
 | 19 Nov 2026 | "Tell customer they are alerted" | Acknowledgement at most once per 30 minutes instead of once per 4 hours; a shorter "Got your message" line when the customer was already greeted that day | Item 13 |
 
+| 19 Nov 2026 | New steps "Fixed reply?" and "Fixed reply as AI answer" (between "Bot paused?" and "Ask Claude") | A first greeting, the "New enquiry" choice and the details form are answered from code with no AI call; everything after is unchanged | Item 18 |
+| 19 Nov 2026 | "Build Claude request" | Fixed thank-you line; cancel and call-back requests no longer reset a confirmed enquiry after 24 hours; typed "new enquiry" acts like the button; a greeting more than 5 minutes after the last message brings the menu back; documents needed are worked out in code from the service form and are never a condition; prompt: forms always used, at most three questions per message without forms, LCL/air "not sure" accepted, "Sohar Port", export clearance not offered on its own; the AI returns only changed lead fields; the whole AI request, answer format included, is built here; max 2,000 answer tokens | Items 1, 2, 12, 13, 16, 17, 18; Decisions 3, 4, 5 |
+| 19 Nov 2026 | "Ask Claude", "Ask Claude again" | Now send the request as built (second one with the model swapped to Haiku). The long duplicated answer format was removed from both | Item 17 |
+| 19 Nov 2026 | New steps "Second answer usable?" and "Short wait before last try" | If both AI attempts fail, the run waits 20 seconds and tries once more before giving up | Failed-answer recovery |
+| 19 Nov 2026 | "Still the newest?" | Also compares documents needed with documents identified; at confirmation writes "Documents not supplied: ..." at the start of the lead's notes, which SST 2 already shows on the sheet and the email | Item 2 |
+
+"Read Claude answer" is unchanged. Draft version id after these saves: `c998927d-15d7-467c-9605-17e5fea724c0`.
+
+Checks done on the draft: (1) read back from n8n and compared with the tested files: all six
+code steps match; (2) offline tests in `bot_build/` (15 message scenarios and a land-freight
+enquiry with dangerous goods through to confirmation); (3) one n8n dry run, execution 1891,
+with pinned data and the dummy number 999990007101: greeting answered from code, no AI call,
+nothing sent to WhatsApp. Not yet checked: real AI answers with the new prompt and answer
+format. That needs the draft published and a real test chat.
+
+Test rows created by the dry run (dummy phone 999990007101, safe to delete at go-live):
+one row in `sst_chats` (id 17), one in `sst_seen_messages` (message id wamid.DRYRUN-A1) and
+one in `sst_conversation_log`.
+
 The code for every draft change is kept as patch scripts in `bot_build/`, with an offline
 test rig. Plan and status: `SST_BOT_FIX_PLAN.md`.
 
