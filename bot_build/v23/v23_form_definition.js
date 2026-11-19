@@ -171,7 +171,8 @@ const screen = (id, title, data, kids, ft) => ({ id, title, data, layout: { type
 // Page 3 needs the page 2 choices it depends on.
 const CARRY = ['sea_type', 'direction_sea', 'direction_air', 'direction_land', 'direction_project', 'equip_transit', 'via_customs'];
 const p3data = { mode: str('sea') }, p3pay = { mode: D + 'data.mode}' };
-for (const k of CARRY) { p3data[k] = str('x'); p3pay[k] = D + (DIRN.indexOf(k) >= 0 ? 'data.' : 'form.') + k + '}'; }
+const SAMPLE = { sea_type: 'fcl', direction_sea: 'import', direction_air: 'import', direction_land: 'import', direction_project: 'import', equip_transit: 'containers', via_customs: 'sea' };
+for (const k of CARRY) { p3data[k] = str(SAMPLE[k] || 'x'); p3pay[k] = D + (DIRN.indexOf(k) >= 0 ? 'data.' : 'form.') + k + '}'; }
 const p4data = { mode: str('sea'), sea_type: str('fcl') };
 const p4pay = { mode: D + 'data.mode}', sea_type: D + 'data.sea_type}' };
 const payload = { form: 'service', mode: D + 'screen.SERVICE.form.mode}' };

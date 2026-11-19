@@ -66,6 +66,8 @@ s = rep(s, "['breakbulk', 'Break bulk or loose cargo']]),\n    radio('trucks_tra
 s = rep(s, "  // transit\n  DT('equip_transit', 'containers', [radio('size_transit', 'Container size', SIZE), radio('ctype_transit', 'Container type', CTYPE)]),",
            "  // transit\n  DT('equip_transit', 'containers', [radio('size_transit', 'Container size', SIZE), radio('ctype_transit', 'Container type', CTYPE)]),\n  M('transit', [radio('trucks_transit', 'Do you need our trucks?', [['yes', 'Yes'], ['no', 'No, we have our own']])]),")
 # build check: no page may be empty for any combination of the choices that decide what is shown
+# Meta's preview fills a page opened on its own with these sample values. "x" matched nothing, so the page looked empty there.
+s = rep(s, "for (const k of CARRY) { p3data[k] = str('x');", "const SAMPLE = { sea_type: 'fcl', direction_sea: 'import', direction_air: 'import', direction_land: 'import', direction_project: 'import', equip_transit: 'containers', via_customs: 'sea' };\nfor (const k of CARRY) { p3data[k] = str(SAMPLE[k] || 'x');")
 # name + build check (item 4)
 s = rep(s, "const flow = { version: '7.0', screens };\nreturn [{ json: { name: 'SST service form v22 required sizes', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];",
 r'''const flow = { version: '7.0', screens };
