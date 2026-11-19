@@ -21,13 +21,26 @@ each section.
 
 ## 1. Changes to the live bot
 
-**None so far.** No workflow has been edited, published, unpublished, executed or tested from
-this account. No data table row has been added or changed. No WhatsApp message or email has
-been sent. No Meta setting, form or template has been touched.
+No workflow has been edited, published, unpublished, executed or tested from this account.
+No data table row has been added or changed. No WhatsApp message or email has been sent. No
+Meta setting, form or template has been touched. One sheet cell has been changed:
 
 | Date | System | What changed | Why | Asked for by owner? |
 |---|---|---|---|---|
-| (nothing yet) | | | | |
+| 19 Nov 2026 | Google Sheet "SST WhatsApp Leads", tab FAQ, cell B9 (answer to "Do you do customs clearance?") | Was: "Yes, for imports and exports by sea, air and road." Now: "Yes. We clear imports by sea, air and road as a service on its own. For exports, we handle the export clearance as part of shipping your cargo, so you don't need to book it separately." | The FAQ and the bot's prompt disagreed. The owner confirmed export clearance is done as part of handling the export, not offered as a separate option. | Yes |
+
+### Decisions the owner has made (19 Nov 2026), not yet built
+
+1. Documents are never mandatory. The bot asks for them firmly, once. If the customer cannot
+   supply them or asks for help, the enquiry is still confirmed and forwarded, and the sales
+   team is told which documents are missing, by name.
+2. Export: the loading port is Sohar Port, pre-selected, not asked. Import: the discharge
+   port can be any port in Oman.
+3. LCL and air: package size and volume are both required, but the customer may enter
+   "not sure". The form says so beside the field.
+4. Anything port-related says "Sohar Port", never "Sohar". No raw codes reach Claude.
+5. Export customs clearance is not offered as a separate option (FAQ updated above).
+6. Form v23 may be built as a draft for review before it is published.
 
 ### Writes made by the owner through the dashboard (not by Claude)
 
