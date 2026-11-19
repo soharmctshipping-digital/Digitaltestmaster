@@ -44,6 +44,13 @@ Timeline on 19 Nov 2026 (UTC):
 - Fix in the draft: every field is required again, as in the published version, and the AI
   returns an empty value for lead fields that have not changed. Not yet published.
 
+- 09:32 Corrected draft saved and read back: version `93636f64-ec55-4682-968f-b2f826cb64fd`.
+  It is NOT published. A second publish needs the owner's fresh go-ahead.
+- About 09:35 One more dummy run (execution 1896, phone 999990007104, message id
+  wamid.DRYRUN-D1) went through the live, earlier version by mistake of ordering: it was
+  meant to follow the publish, which did not happen. It made one real AI call on the old
+  version, sent nothing to WhatsApp, and left test rows like the others.
+
 No real customer wrote in during the six minutes the new version was live; the only runs in
 that window were the two dummy ones.
 
