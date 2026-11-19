@@ -119,7 +119,15 @@ Status at 11:11 UTC, 19 Nov:
   T8 version `5f0e02d7-...`.
 - The first draft, `990727460359037`, is superseded and can be deleted (T8 "Failed draft
   ids" + "Run draft cleanup"). Left in place until the owner says so.
-- Neither draft is published and SST 1 does not send them. Customers still get v22.
+- 11:25 **Form v23 PUBLISHED in Meta** on the owner's instruction ("publish it"): form id
+  `1400138701949428` (T8 "Run form publish", execution 2012, Meta answered success). A
+  published form cannot be edited; any change means a new form.
+- A rebuild with realistic sample values for Meta's page preview (so a page opened on its own
+  is not blank) was refused by Meta because the name was already taken (execution 2011). It
+  was not needed: sample values only affect the preview. T8 "Form definition" holds that
+  latest source; give the next build a new name.
+- SST 1 is being switched to the new form id next; until that is published customers still
+  get v22.
 - SST 1 has a draft (version `e2bb7ee6-...`, not live) in which "Read message" reads the v23
   answers as well as v22.
 - To finish after the owner's review: publish the form with T8 "Run form publish" (set the id
