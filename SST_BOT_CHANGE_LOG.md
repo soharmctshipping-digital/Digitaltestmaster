@@ -21,20 +21,19 @@ each section.
 
 ## 1. Changes to the live bot
 
-No workflow has been published, unpublished or executed from this account. SST 1 has draft
-edits (listed below) that are not live. No data table row has been added or changed. No WhatsApp message or email has been sent. No
+SST 1 was edited and published on 19 Nov 2026 with the owner's approval (details below). No
+other workflow has been changed. No data table row has been added or changed. No WhatsApp message or email has been sent. No
 Meta setting, form or template has been touched. One sheet cell has been changed:
 
 | Date | System | What changed | Why | Asked for by owner? |
 |---|---|---|---|---|
 | 19 Nov 2026 | Google Sheet "SST WhatsApp Leads", tab FAQ, cell B9 (answer to "Do you do customs clearance?") | Was: "Yes, for imports and exports by sea, air and road." Now: "Yes. We clear imports by sea, air and road as a service on its own. For exports, we handle the export clearance as part of shipping your cargo, so you don't need to book it separately." | The FAQ and the bot's prompt disagreed. The owner confirmed export clearance is done as part of handling the export, not offered as a separate option. | Yes |
 
-### SST 1 draft edits (not published)
+### SST 1 changes, PUBLISHED 19 Nov 2026 at 09:14 UTC on the owner's instruction
 
-From 19 Nov 2026 the SST 1 workflow has a DRAFT that differs from the published version.
-The published version, which is what customers get, is still `1ed21e80-703c-4c40-ad56-9c7d53a36833`.
-To throw the draft away, restore that version in n8n's version history. Each row is a draft
-save; none has been published.
+SST 1 now runs version `c998927d-15d7-467c-9605-17e5fea724c0`. The version before this work
+was `1ed21e80-703c-4c40-ad56-9c7d53a36833`; to go back, publish that version from n8n's
+version history. The rows below are what changed between the two.
 
 | Date | Step | What changed in the draft | Owner's item |
 |---|---|---|---|
