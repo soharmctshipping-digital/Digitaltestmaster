@@ -39,8 +39,8 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 
 | Owner's # | What | Where | Audit codes | Status |
 |---|---|---|---|---|
-| 1, 16 | Always send the forms; pre-fill the service form with what the customer typed; keep the rest as a note; remove the long question list; text route only as fallback, max 3 questions | SST 1 prompt + form v23 | C3, D10, D1 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
-| 2 | Work out required documents in code, record "Documents not supplied: ..." on the lead and the email, never block confirmation | SST 1 "Read Claude answer", prompt; SST 2 email | C1, C2, D6, B4 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
+| 1, 16 | Always send the forms; pre-fill the service form with what the customer typed; keep the rest as a note; remove the long question list; text route only as fallback, max 3 questions | SST 1 prompt + form v23 | C3, D10, D1 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| 2 | Work out required documents in code, record "Documents not supplied: ..." on the lead and the email, never block confirmation | SST 1 "Read Claude answer", prompt; SST 2 email | C1, C2, D6, B4 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
 | 3 | Free components on the two screens at 99 of 100 (merge duplicated blocks), target 90 or fewer | T8 "Form definition" (v23) | C4 | Not started |
 | 4 | Add a build check in T8 that refuses a form over any Meta limit | T8 | C4 | Not started |
 | 5 | "Which port?" box under "Another port"; named borders instead of "A road border" | T8 (v23); SST 1 "Read message" | C5, C13 | Not started |
@@ -49,14 +49,14 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 | 8 | SST D: error reporting, skip a file already saved for that message, single Drive copy | SST D, SST 1 | A11, A17, E5, E6, E7 | Not started |
 | 10 | Merge customer nudge and watchdog into one run every three hours; filter the reads | SST C, SST G | E19, A2 | Not started. Interval confirmed: 3 hours |
 | 11 | Prepare the list of test rows for the go-live clear-out (read-only) | Sheets, data tables | E20 | Not started |
-| 12 | Fixed thank-you line; cancel and call-back never trigger the 24-hour reset | SST 1 "Build Claude request" | A4, B3 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
-| 13 | Typed "new enquiry" acts like the button; one acknowledgement per burst (max one per 30 min); menu again after a gap; no menu in reply to "Ok/Bye" | SST 1 | D4, A16, A25 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
-| 17 | Claude returns only changed lead fields; code keeps the rest. Replay ten past conversations and confirm identical leads | SST 1 reply format + "Read Claude answer" | B1 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
-| 18 | Greeting, "New enquiry" acknowledgement and details-form acknowledgement sent from code, no Claude call | SST 1 | B2, C14 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
-| Decision 7 | In-run retry for a failed AI answer | SST 1 | A2, A7 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
+| 12 | Fixed thank-you line; cancel and call-back never trigger the 24-hour reset | SST 1 "Build Claude request" | A4, B3 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| 13 | Typed "new enquiry" acts like the button; one acknowledgement per burst (max one per 30 min); menu again after a gap; no menu in reply to "Ok/Bye" | SST 1 | D4, A16, A25 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| 17 | Claude returns only changed lead fields; code keeps the rest. Replay ten past conversations and confirm identical leads | SST 1 reply format + "Read Claude answer" | B1 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| 18 | Greeting, "New enquiry" acknowledgement and details-form acknowledgement sent from code, no Claude call | SST 1 | B2, C14 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| Decision 7 | In-run retry for a failed AI answer | SST 1 | A2, A7 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
 | Decision 2 | Export POL fixed to Sohar Port; import POD list of Oman ports | T8 (v23); SST 1 "Read message" | D5, C8 | Not started |
 | Decision 3 | LCL/air "not sure" hint; bot stops querying the mismatch | T8 (v23); SST 1 prompt | C7, D9 | Not started |
-| Decision 4 | "Sohar Port" everywhere; map raw codes to labels | SST 1 "Read message" | C10 | In the SST 1 draft (published 09:14, rolled back 09:20 UTC on 19 Nov; answer format since corrected) |
+| Decision 4 | "Sohar Port" everywhere; map raw codes to labels | SST 1 "Read message" | C10 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
 
 ## Waiting on the owner
 

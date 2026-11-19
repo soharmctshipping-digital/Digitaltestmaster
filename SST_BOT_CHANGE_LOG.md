@@ -21,15 +21,14 @@ each section.
 
 ## 1. Changes to the live bot
 
-SST 1 was edited, published and rolled back on 19 Nov 2026 (details below); it is live on its
-earlier version and holds the changes as a draft. No other workflow has been changed. No data table row has been added or changed. No WhatsApp message or email has been sent. No
+SST 1 was edited, published and rolled back on 19 Nov 2026 (details below); the corrected version is live. No other workflow has been changed. No data table row has been added or changed. No WhatsApp message or email has been sent. No
 Meta setting, form or template has been touched. One sheet cell has been changed:
 
 | Date | System | What changed | Why | Asked for by owner? |
 |---|---|---|---|---|
 | 19 Nov 2026 | Google Sheet "SST WhatsApp Leads", tab FAQ, cell B9 (answer to "Do you do customs clearance?") | Was: "Yes, for imports and exports by sea, air and road." Now: "Yes. We clear imports by sea, air and road as a service on its own. For exports, we handle the export clearance as part of shipping your cargo, so you don't need to book it separately." | The FAQ and the bot's prompt disagreed. The owner confirmed export clearance is done as part of handling the export, not offered as a separate option. | Yes |
 
-### SST 1 changes: published, rolled back, now a DRAFT again
+### SST 1 changes: published, rolled back, corrected and published again
 
 Timeline on 19 Nov 2026 (UTC):
 
@@ -50,6 +49,14 @@ Timeline on 19 Nov 2026 (UTC):
   wamid.DRYRUN-D1) went through the live, earlier version by mistake of ordering: it was
   meant to follow the publish, which did not happen. It made one real AI call on the old
   version, sent nothing to WhatsApp, and left test rows like the others.
+
+- 09:38 The owner approved again ("build, publish it and test it heavily"). Version
+  `93636f64-ec55-4682-968f-b2f826cb64fd` was published. **This is the live version now.**
+  A real AI test straight after (execution 1897, dummy phone 999990007105) was answered in
+  8 seconds: typed shipment details noted, "Sohar Port" used, details form sent.
+- From 09:40 A full live test of every service with dummy numbers 9999900072xx is running;
+  results go to `audit/F_live_test_19Nov.md`. Two of those chats are confirmed on purpose, so
+  two test leads and two emails to the test address are expected.
 
 No real customer wrote in during the six minutes the new version was live; the only runs in
 that window were the two dummy ones.
