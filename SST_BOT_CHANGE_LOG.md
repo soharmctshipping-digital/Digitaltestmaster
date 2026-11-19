@@ -58,6 +58,25 @@ Timeline on 19 Nov 2026 (UTC):
   results go to `audit/F_live_test_19Nov.md`. Two of those chats are confirmed on purpose, so
   two test leads and two emails to the test address are expected.
 
+- 09:40 to 10:50 Live test of every service on the 09:38 version: 82 messages on 16 dummy
+  numbers, 13 service variants, all reached a summary. Report: `audit/F_live_test_19Nov.md`.
+  No errors and no repeated questions; several medium defects, fixed next.
+- 10:54 Version `f0bdb21b-df95-49de-988e-e07851f60bdb` published. **This is the live SST 1
+  version now.** It adds: item 15 (pause before loading the chat, messages marked handled
+  before the reply, new step "Carry answer on"); notes on the lead are never lost when the AI
+  rewrites them; at confirmation any form answer missing from the lead is added to the notes
+  ("From the form: ..."); a fixed summary layout; the documents step is skipped for container,
+  warehousing and agency enquiries; weight as a plain number; Arabic spelling of Sohar.
+  To go back one step publish `93636f64-...`; to go back to before all of today's work
+  publish `1ed21e80-...`.
+- 10:54 to 11:00 Re-test on dummy numbers 999990007301 to ...303: smoke test passed; a
+  transit enquiry taken to confirmation (reference SST-261119-VD75) kept the position, the
+  cargo value and "urgent" on the lead and used the fixed summary layout.
+- SST 3 published with item 9 (version `b9994a9c-84dc-4748-8d0a-1d937cc0145a`).
+- SST 2: item 9 is saved as a DRAFT only. Publishing it was blocked by the session's safety
+  check, so SST 2 still runs version `f0c84462-...`. The owner can publish it in n8n (one
+  click), or approve it again in chat.
+
 No real customer wrote in during the six minutes the new version was live; the only runs in
 that window were the two dummy ones.
 
@@ -94,6 +113,12 @@ enquiry with dangerous goods through to confirmation); (3) one n8n dry run, exec
 with pinned data and the dummy number 999990007101: greeting answered from code, no AI call,
 nothing sent to WhatsApp. Not yet checked: real AI answers with the new prompt and answer
 format. That needs the draft published and a real test chat.
+
+Test leads created on purpose or by the tests (all on dummy numbers, to clear at go-live):
+SST-261119-6MMM (sea FCL), SST-261119-JXCL (land freight, then cancelled as SST-261119-BZLD),
+SST-261119-LXSQ (RoRo, confirmed by a typed "ok"), SST-261119-VD75 (transit re-test). Each
+has a Leads row and an email at the test address. Dummy numbers used: 999990007101 to ...105,
+999990007201 to ...216, 999990007301 to ...303.
 
 Test rows created by the dry runs (dummy phones 999990007101, ...102 and ...103, safe to
 delete at go-live): `sst_chats` id 17; `sst_seen_messages` message ids wamid.DRYRUN-A1, -B1

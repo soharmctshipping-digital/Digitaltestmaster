@@ -39,8 +39,8 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 
 | Owner's # | What | Where | Audit codes | Status |
 |---|---|---|---|---|
-| 1, 16 | Always send the forms; pre-fill the service form with what the customer typed; keep the rest as a note; remove the long question list; text route only as fallback, max 3 questions | SST 1 prompt + form v23 | C3, D10, D1 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
-| 2 | Work out required documents in code, record "Documents not supplied: ..." on the lead and the email, never block confirmation | SST 1 "Read Claude answer", prompt; SST 2 email | C1, C2, D6, B4 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| 1, 16 | Always send the forms; pre-fill the service form with what the customer typed; keep the rest as a note; remove the long question list; text route only as fallback, max 3 questions | SST 1 prompt + form v23 | C3, D10, D1 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
+| 2 | Work out required documents in code, record "Documents not supplied: ..." on the lead and the email, never block confirmation | SST 1 "Read Claude answer", prompt; SST 2 email | C1, C2, D6, B4 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
 | 3 | Free components on the two screens at 99 of 100 (merge duplicated blocks), target 90 or fewer | T8 "Form definition" (v23) | C4 | Not started |
 | 4 | Add a build check in T8 that refuses a form over any Meta limit | T8 | C4 | Not started |
 | 5 | "Which port?" box under "Another port"; named borders instead of "A road border" | T8 (v23); SST 1 "Read message" | C5, C13 | Not started |
@@ -49,22 +49,22 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 | 8 | SST D: error reporting, skip a file already saved for that message, single Drive copy | SST D, SST 1 | A11, A17, E5, E6, E7 | Not started |
 | 10 | Merge customer nudge and watchdog into one run every three hours; filter the reads | SST C, SST G | E19, A2 | Not started. Interval confirmed: 3 hours |
 | 11 | Prepare the list of test rows for the go-live clear-out (read-only) | Sheets, data tables | E20 | Not started |
-| 12 | Fixed thank-you line; cancel and call-back never trigger the 24-hour reset | SST 1 "Build Claude request" | A4, B3 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
-| 13 | Typed "new enquiry" acts like the button; one acknowledgement per burst (max one per 30 min); menu again after a gap; no menu in reply to "Ok/Bye" | SST 1 | D4, A16, A25 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
-| 17 | Claude returns only changed lead fields; code keeps the rest. Replay ten past conversations and confirm identical leads | SST 1 reply format + "Read Claude answer" | B1 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
-| 18 | Greeting, "New enquiry" acknowledgement and details-form acknowledgement sent from code, no Claude call | SST 1 | B2, C14 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
-| Decision 7 | In-run retry for a failed AI answer | SST 1 | A2, A7 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| 12 | Fixed thank-you line; cancel and call-back never trigger the 24-hour reset | SST 1 "Build Claude request" | A4, B3 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
+| 13 | Typed "new enquiry" acts like the button; one acknowledgement per burst (max one per 30 min); menu again after a gap; no menu in reply to "Ok/Bye" | SST 1 | D4, A16, A25 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
+| 17 | Claude returns only changed lead fields; code keeps the rest. Replay ten past conversations and confirm identical leads | SST 1 reply format + "Read Claude answer" | B1 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
+| 18 | Greeting, "New enquiry" acknowledgement and details-form acknowledgement sent from code, no Claude call | SST 1 | B2, C14 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
+| Decision 7 | In-run retry for a failed AI answer | SST 1 | A2, A7 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
 | Decision 2 | Export POL fixed to Sohar Port; import POD list of Oman ports | T8 (v23); SST 1 "Read message" | D5, C8 | Not started |
 | Decision 3 | LCL/air "not sure" hint; bot stops querying the mismatch | T8 (v23); SST 1 prompt | C7, D9 | Not started |
-| Decision 4 | "Sohar Port" everywhere; map raw codes to labels | SST 1 "Read message" | C10 | LIVE in SST 1 since 09:38 UTC on 19 Nov (version 93636f64) |
+| Decision 4 | "Sohar Port" everywhere; map raw codes to labels | SST 1 "Read message" | C10 | LIVE in SST 1 (19 Nov, version f0bdb21b), tested with dummy numbers |
 
 ## Waiting on the owner
 
 | Owner's # | What | Question |
 |---|---|---|
-| 9 | Write four sheet cells as plain text so "+" and country codes survive | APPROVED 19 Nov. Not built yet |
+| 9 | Write four sheet cells as plain text so "+" and country codes survive | LIVE in SST 3; SST 2 part saved as a draft, publish blocked, owner to publish |
 | 14 | Keep text typed just before "New enquiry" is tapped | DROPPED by the owner: "we can only cater to what the customer confirms" |
-| 15 | Mark messages handled before replying; load chat after the pause | APPROVED 19 Nov (with un-mark on a failed send). Not built yet |
+| 15 | Mark messages handled before replying; load chat after the pause | LIVE in SST 1 (19 Nov). A failed send is left to the watchdog, so no un-mark was needed |
 
 ## Build order
 
@@ -74,3 +74,21 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 4. Form v23 as a draft: items 3, 4, 5, Decisions 2 and 3, pre-fill for 1/16.
 5. Items 6, 7, 8, 10, 11.
 6. Re-audit after each stage.
+
+## From the live test of 19 Nov (see `audit/F_live_test_19Nov.md`)
+
+Fixed and live: lead notes lost, form answers missing from the lead, summary layout, documents
+step for services that need none, weight as text, Arabic spelling of Sohar.
+
+Open, for the owner to decide:
+- A typed "ok" at the summary confirms the enquiry (the prompt treats a plain yes as agreement).
+- A cancellation opens a new case reference while the reply names the old one; check the old
+  lead is marked Lost.
+- Official Arabic company name (the bot now keeps "Sohar Shipping" in English).
+
+For form v23 (not started): pre-fill from typed details; "Which port?" / "Which border?" /
+"Something else" text boxes; drop "Customs clearance by us?" on exports; drop "Dangerous
+goods?" on RoRo; project form asks the same place twice; "Largest piece size" required for
+land freight; CBM required for LCL and air; temperature field for cold storage.
+
+Still not started: 3, 4, 5 (v23), 6, 7, 8, 10, 11.
