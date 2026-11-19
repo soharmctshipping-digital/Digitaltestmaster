@@ -125,6 +125,18 @@ Things to know:
 - SST 1 form id in use: `29363394833300676` (published). Blocked number list has one entry.
   Webhook path: `sst-bot`.
 
+### Full customer-side audit, 19 November 2026 (read-only)
+
+Five reviewers read SST 1 in full, the Claude prompts and 26 real runs, form v22, all 222
+logged exchanges, and the supporting workflows and data. Nothing was changed, run or sent.
+
+- Merged list of 40 customer-side items, with proposed fixes and the decisions needed:
+  `SST_BOT_AUDIT_FINDINGS.md`
+- Detailed write-ups with evidence and node-level changes: the `audit/` folder
+  (phone numbers and emails redacted)
+- Sales-side findings are parked at the end of the findings file.
+- No fix has been applied. Each waits for the owner's approval.
+
 ## 4. Open questions for the owner
 
 1. **Restore doc and migration doc not found.** Nothing in Google Drive or Docs under this
