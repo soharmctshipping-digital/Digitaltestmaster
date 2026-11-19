@@ -27,8 +27,7 @@ Started 19 November 2026. Update the Status column as each item moves.
 6. Build form v23 as a draft for review before publishing.
 7. Failed AI answer: retry inside the same run after a short wait; keep the watchdog as a
    backstop.
-8. Customer nudge and watchdog merge into one run every three hours (to be confirmed: the
-   owner wrote "3rd hourly run").
+8. Customer nudge and watchdog merge into one run every three hours (confirmed by the owner).
 
 Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 - Import discharge ports: Sohar Port, Duqm Port, Salalah Port, Port Sultan Qaboos (Muscat),
@@ -48,7 +47,7 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 | 6 | Check Meta's signature on incoming posts, log-only first, then enforce; watchdog gets its own secret; verify token into a credential | SST 1, SST G | A3, E1 | Not started. Owner must type the app secret into n8n |
 | 7 | Retry the lead write three times; on failure email the full lead to the test address and let the watchdog write the row later | SST 2, SST G | E17 | Not started |
 | 8 | SST D: error reporting, skip a file already saved for that message, single Drive copy | SST D, SST 1 | A11, A17, E5, E6, E7 | Not started |
-| 10 | Merge customer nudge and watchdog into one run every three hours; filter the reads | SST C, SST G | E19, A2 | Not started. Confirm interval first |
+| 10 | Merge customer nudge and watchdog into one run every three hours; filter the reads | SST C, SST G | E19, A2 | Not started. Interval confirmed: 3 hours |
 | 11 | Prepare the list of test rows for the go-live clear-out (read-only) | Sheets, data tables | E20 | Not started |
 | 12 | Fixed thank-you line; cancel and call-back never trigger the 24-hour reset | SST 1 "Build Claude request" | A4, B3 | Not started |
 | 13 | Typed "new enquiry" acts like the button; one acknowledgement per burst (max one per 30 min); menu again after a gap; no menu in reply to "Ok/Bye" | SST 1 | D4, A16, A25 | Not started |
@@ -64,7 +63,7 @@ Lists for v23, taken from the 333 quotations in the SST CLAUDE Drive folder:
 | Owner's # | What | Question |
 |---|---|---|
 | 9 | Write four sheet cells as plain text so "+" and country codes survive | Owner raised overseas numbers; the fix keeps all country codes. Awaiting a yes |
-| 14 | Keep text typed just before "New enquiry" is tapped | Explained; awaiting approval |
+| 14 | Keep text typed just before "New enquiry" is tapped | DROPPED by the owner: "we can only cater to what the customer confirms" |
 | 15 | Mark messages handled before replying; load chat after the pause | Explained; awaiting approval |
 
 ## Build order

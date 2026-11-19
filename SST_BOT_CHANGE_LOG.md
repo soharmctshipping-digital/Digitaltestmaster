@@ -21,13 +21,28 @@ each section.
 
 ## 1. Changes to the live bot
 
-No workflow has been edited, published, unpublished, executed or tested from this account.
-No data table row has been added or changed. No WhatsApp message or email has been sent. No
+No workflow has been published, unpublished or executed from this account. SST 1 has draft
+edits (listed below) that are not live. No data table row has been added or changed. No WhatsApp message or email has been sent. No
 Meta setting, form or template has been touched. One sheet cell has been changed:
 
 | Date | System | What changed | Why | Asked for by owner? |
 |---|---|---|---|---|
 | 19 Nov 2026 | Google Sheet "SST WhatsApp Leads", tab FAQ, cell B9 (answer to "Do you do customs clearance?") | Was: "Yes, for imports and exports by sea, air and road." Now: "Yes. We clear imports by sea, air and road as a service on its own. For exports, we handle the export clearance as part of shipping your cargo, so you don't need to book it separately." | The FAQ and the bot's prompt disagreed. The owner confirmed export clearance is done as part of handling the export, not offered as a separate option. | Yes |
+
+### SST 1 draft edits (not published)
+
+From 19 Nov 2026 the SST 1 workflow has a DRAFT that differs from the published version.
+The published version, which is what customers get, is still `1ed21e80-703c-4c40-ad56-9c7d53a36833`.
+To throw the draft away, restore that version in n8n's version history. Each row is a draft
+save; none has been published.
+
+| Date | Step | What changed in the draft | Owner's item |
+|---|---|---|---|
+| 19 Nov 2026 | "Read message" | Ports and clearance points carry full names ("Sohar Port", "Duqm Port", "Salalah Airport"); customs cargo labels match the form; reefer temperature gets "°C"; warehouse location keeps "Muscat (Rusayl)"; a named port under "Another port" is read if the form sends one | Decision 4, item 5 |
+| 19 Nov 2026 | "Tell customer they are alerted" | Acknowledgement at most once per 30 minutes instead of once per 4 hours; a shorter "Got your message" line when the customer was already greeted that day | Item 13 |
+
+The code for every draft change is kept as patch scripts in `bot_build/`, with an offline
+test rig. Plan and status: `SST_BOT_FIX_PLAN.md`.
 
 ### Decisions the owner has made (19 Nov 2026), not yet built
 
