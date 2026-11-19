@@ -31,3 +31,21 @@ Wiring that goes with stage B: "Ask Claude" and "Ask Claude again" send
 `$('Build Claude request').first().json.body` as it is (the second with the model swapped to
 Haiku). After "Ask Claude again": IF "Second answer usable?"; if not, wait 20 seconds and
 "Ask Claude (last try)", then "Read Claude answer".
+
+## Item 15 (no double answers), SST 1 draft, 19 Nov 2026
+
+Wiring only, plus two small code steps:
+
+- The pause and the early newest-message check moved in front of "Load chat":
+  "Customer sent files?" (false) and "Collect files" now go to "Pause for more messages";
+  "Still the newest (early)?" returns the combined message and goes to "Load chat";
+  "Build Claude request" goes straight to "Ignored promoter?" and "Menu state to save?".
+- Marking before replying: "Still the newest?" no longer feeds "AI answered?" directly.
+  The chain is "Still the newest?" -> "One row per message" -> "Mark messages answered"
+  (always outputs) -> new "Carry answer on" -> "AI answered?". "Carry answer on" passes on
+  the items of "Still the newest?" and returns nothing on the other routes.
+
+## Item 9 (plain-text sheet writes), drafts of SST 2 and SST 3, 19 Nov 2026
+
+`options.cellFormat` set to `RAW` on SST 2 "Add to Quotes sheet" and SST 3 "Add version to
+Quotes sheet", "Add to Confirmed Quotes", "Mark lead Approved".

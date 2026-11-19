@@ -78,6 +78,14 @@ The rows below are the changes held in the draft.
 | 19 Nov 2026 | New steps "Second answer usable?" and "Short wait before last try" | If both AI attempts fail, the run waits 20 seconds and tries once more before giving up | Failed-answer recovery |
 | 19 Nov 2026 | "Still the newest?" | Also compares documents needed with documents identified; at confirmation writes "Documents not supplied: ..." at the start of the lead's notes, which SST 2 already shows on the sheet and the email | Item 2 |
 
+| 19 Nov 2026 | Pause, early check, "Load chat", new step "Carry answer on" (DRAFT, not yet live) | Item 15: the chat is loaded after the 2-second pause, and messages are marked handled before the reply is sent, so two runs cannot answer the same text | Item 15 |
+
+Item 9, in the DRAFTS of SST 2 and SST 3 (not yet live): four sheet writes changed from
+"let Google format" to "as typed", so phone numbers keep their + and country code. SST 2
+"Add to Quotes sheet"; SST 3 "Add version to Quotes sheet", "Add to Confirmed Quotes",
+"Mark lead Approved". Versions before the change: SST 2 `f0c84462-f15f-4ac4-8dc2-0fd87b5cf9ba`,
+SST 3 `0786558d-8ea8-43df-bdb1-8a6df5216411`. No testing switch was touched.
+
 "Read Claude answer" is unchanged. Draft version id after these saves: `c998927d-15d7-467c-9605-17e5fea724c0`.
 
 Checks done on the draft: (1) read back from n8n and compared with the tested files: all six
