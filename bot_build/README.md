@@ -17,3 +17,17 @@ To use: export the code of "Read message", "Build Claude request", "Read Claude 
 Wiring that goes with stage A: a new IF step "Fixed reply?" between "Bot paused?" (false
 output) and "Ask Claude". True (`$json.canned` is set) goes straight to "Read Claude answer";
 false goes to "Ask Claude".
+
+## Stage B
+
+- `patchB.py`: applies on top of stage A (`new_*.js`) and writes `final_*.js`. Documents rule
+  worked out in code, AI returns only changed lead fields, the whole AI request (answer format
+  included) is built in "Build Claude request", prompt changes for forms-first, three
+  questions at most without forms, LCL/air "not sure", "Sohar Port".
+- `testB.js`: offline run of a land-freight enquiry with dangerous goods through to
+  confirmation, showing "Documents not supplied: ..." on the lead.
+
+Wiring that goes with stage B: "Ask Claude" and "Ask Claude again" send
+`$('Build Claude request').first().json.body` as it is (the second with the model swapped to
+Haiku). After "Ask Claude again": IF "Second answer usable?"; if not, wait 20 seconds and
+"Ask Claude (last try)", then "Read Claude answer".
