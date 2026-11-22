@@ -106,3 +106,28 @@ Not started: pre-filling the form from typed details (needs a v24 and a change t
 7 (lead-write retry); 8 (file saving); 10 (three-hourly combined run); 11 (test-row list).
 
 Housekeeping: delete the superseded draft form 990727460359037 in Meta when the owner agrees.
+
+## New work started 22 Nov 2026: automatic import customs quotations
+
+Owner's instruction: for import customs clearance enquiries the bot prepares the quotation
+itself from fixed rates and sends it; complicated enquiries go to the sales team.
+
+Owner's decisions (22 Nov):
+- The quotation goes to the CUSTOMER directly (PDF on WhatsApp), salesperson copied.
+- Scope: every import customs clearance enquiry (sea FCL, LCL, air), unless complicated.
+- Transport: build a rate list from the quotations in the SST CLAUDE Drive folder; every
+  transport figure carries "(subject to change due to certain conditions)". Use the rates
+  spreadsheet for other charge points where needed.
+- Layout: follow the uploaded templates. Copies in `bot_build/quote_templates/`. The one to
+  follow for clearance is `Clearance_Charges_Quotation_LATEST.docx` (FCL, LCL and Air tables,
+  Documents Required, Customs Authorization Note, Terms & Conditions).
+- Also wanted (asked 21 Nov, not yet answered where): a .docx copy alongside the PDF.
+
+In progress (read-only so far, nothing changed in n8n for this):
+- `SST_Inland_Transport_Rate_List.md` and `bot_build/transport_rates.json`: being built from
+  past quotations.
+- `audit/G_quote_pipeline.md`: how SST 2, SST R, SST 3 and SST W produce and send quotes
+  today, and the smallest safe change list.
+
+To confirm with the owner before building: what counts as "complicated"; two rate points
+where the two uploaded templates disagree (release order line, scanning for 40ft).
