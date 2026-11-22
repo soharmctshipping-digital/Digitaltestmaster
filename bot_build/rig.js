@@ -22,7 +22,7 @@ async function run(prefix, sc) {
   else if (sc.answer) input = node([{ content:[{type:'text', text: JSON.stringify(sc.answer)}] }]);
   else return { route:'claude', needsAI:true, content: bj.customer_text, prev_stage: bj.prev_stage, lead: bj.prev_lead, body: bj.body };
   let r = (await read(input, $, DateTime, ()=>({})))[0].json;
-  if (prefix==='final'||prefix==='c') { nodes['Read Claude answer'] = node([r]); nodes['Check for newer messages'] = node([]); r = (await load(prefix==='c'?'c_Still_the_newest.js':'final_Still_the_newest.js')(node([]), $, DateTime, ()=>({})))[0].json; }
+  if (prefix==='final'||prefix==='c'||prefix==='d'||prefix==='e') { nodes['Read Claude answer'] = node([r]); nodes['Check for newer messages'] = node([]); r = (await load((prefix==='c'||prefix==='d'||prefix==='e')?'c_Still_the_newest.js':'final_Still_the_newest.js')(node([]), $, DateTime, ()=>({})))[0].json; }
   return { route:'claude', canned: Boolean(bj.canned), reply:r.reply, stage:r.stage, lead:r.lead, kind: r.interactive && r.interactive.interactive.type, flow: r.interactive && r.interactive.interactive.action && r.interactive.interactive.action.parameters && r.interactive.interactive.action.parameters.flow_cta, reference:r.reference, handover:r.trigger_handover, support:r.trigger_support, full:r };
 }
 module.exports = { run };
