@@ -147,7 +147,7 @@ Status at 11:11 UTC, 19 Nov:
   line to allow a typed "yes" or "okay", publish SST 1, test with a dummy number and a phone.
 - To drop the draft form instead: put its id in T8 "Failed draft ids" and run "Run draft cleanup".
 
-### "Job enquiry" option (22 Nov 2026): in the SST 1 DRAFT, not yet published
+### "Job enquiry" option (22 Nov 2026): LIVE
 
 Owner's instruction (22 Nov): add a "Job enquiry" choice beside New enquiry, Existing
 shipment and Something else; it should point to the careers page
@@ -168,8 +168,14 @@ Checked: offline tests; stored code read back and matched; two pinned dry runs i
 (executions 2212 and 2213, dummy phone 999990007501): "Hi" gets the four-choice list, and
 "Job enquiry" gets the careers reply with no AI call and stage "faq". Nothing sent.
 
-NOT published: the session's safety check refused, since the owner asked for the option but
-had not said to publish. Waiting for the owner's "publish".
+PUBLISHED on 22 Nov 2026 at about 08:49 UTC on the owner's instruction ("publish it"):
+SST 1 version `67cb73a4-2809-4b89-b2dd-7e1ca1ce7281`. **This is the live version now.**
+To go back to three buttons, publish version `c9e84b8f-...`.
+
+Live checks straight after, dummy phones 999990007502 and ...503, both passed: a typed
+question about a job opening got the careers page and office number from the AI (stage
+"faq", not escalated, no price or contact guard triggered); "Hi" got the greeting with the
+four-choice list. Not tested: how the list looks on a real phone.
 
 Note: before these edits the SST 1 draft already differed from the live version. Every step
 had a new canvas position and 12 steps had lost values that equal n8n's defaults (for example
