@@ -147,6 +147,43 @@ Status at 11:11 UTC, 19 Nov:
   line to allow a typed "yes" or "okay", publish SST 1, test with a dummy number and a phone.
 - To drop the draft form instead: put its id in T8 "Failed draft ids" and run "Run draft cleanup".
 
+### "Job enquiry" option (22 Nov 2026): in the SST 1 DRAFT, not yet published
+
+Owner's instruction (22 Nov): add a "Job enquiry" choice beside New enquiry, Existing
+shipment and Something else; it should point to the careers page
+(https://www.soharshipping.com/career) and give the office number +968 249 55 777.
+
+In the SST 1 draft (version after these saves is newer than `22ba01bb-...`; the live version
+is still `c9e84b8f-...`):
+- "Read Claude answer" (first change ever made to this step): the first question is sent as a
+  WhatsApp list with four rows, because WhatsApp allows only three tap buttons. Arabic has the
+  same four. No menu is added under the careers answer.
+- "Build Claude request": tapping "Job enquiry", or typing "job enquiry", "vacancies" or
+  "careers", gets the fixed careers reply from code (no AI call). The prompt tells the AI to
+  give the same answer to longer job questions and no longer escalates job applications.
+- The two wait steps state "seconds" explicitly again (see note below).
+- Source: `bot_build/patchE.py`, test `bot_build/testE.js`.
+
+Checked: offline tests; stored code read back and matched; two pinned dry runs in n8n
+(executions 2212 and 2213, dummy phone 999990007501): "Hi" gets the four-choice list, and
+"Job enquiry" gets the careers reply with no AI call and stage "faq". Nothing sent.
+
+NOT published: the session's safety check refused, since the owner asked for the option but
+had not said to publish. Waiting for the owner's "publish".
+
+Note: before these edits the SST 1 draft already differed from the live version. Every step
+had a new canvas position and 12 steps had lost values that equal n8n's defaults (for example
+`mode`, `resource`, `unit`). That is what n8n's editor does when the workflow is opened and
+saved by hand; behaviour is the same. Connections were identical. Publishing the draft will
+carry those cosmetic differences along.
+
+### Automatic import customs quotations: PARKED by the owner on 22 Nov 2026
+
+Nothing was built in n8n. Saved for later: decisions and plan in `SST_BOT_FIX_PLAN.md`,
+templates in `bot_build/quote_templates/`, transport rates in
+`SST_Inland_Transport_Rate_List.md` and `bot_build/transport_rates.json`, pipeline review in
+`audit/G_quote_pipeline.md`. Open questions for the owner are listed in the plan.
+
 No real customer wrote in during the six minutes the new version was live; the only runs in
 that window were the two dummy ones.
 
