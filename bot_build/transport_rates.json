@@ -1,0 +1,924 @@
+[
+ {
+  "from": "Sohar Port",
+  "to": "Sohar Industrial Area",
+  "aliases": [
+   "Sohar Industrial Estate",
+   "Sohar Industrial City",
+   "Falaj Al Qabail",
+   "Sohar Industrial Estate Phase 5",
+   "Madayn Sohar"
+  ],
+  "equipment": "20ft / 40ft general container",
+  "rate": 50,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Owner template",
+  "quotations": 1,
+  "low": 50,
+  "high": 65,
+  "latest": "2026-09-14",
+  "earliest": "2026-09-14",
+  "refs": [
+   "SSTTA/QTN/2026/09-____ (2 x 40ft HC plates)"
+  ],
+  "notes": "Owner's template rate. The one quotation found for this area is OMR 65 per container (heavy 40ft HC), i.e. OMR 15 above the template; empty return was on the consignee."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Sohar town / Sohar city limits",
+  "aliases": [
+   "Sohar",
+   "Sohar city",
+   "within Sohar",
+   "Sohar city limits",
+   "consignee location in Sohar"
+  ],
+  "equipment": "20ft / 40ft general container",
+  "rate": 70,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 70,
+  "high": 80,
+  "latest": "2026-10-07",
+  "earliest": "2026-09-24",
+  "refs": [
+   "SSTTA/QTN/2026/10-264 Rev1",
+   "SSTTA/QTN/2026/09-240"
+  ],
+  "notes": "Figures differ (70 for 20ft general, 80 for 40ft DG); most recent used."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Sohar town / Sohar city limits",
+  "aliases": [
+   "Sohar",
+   "Sohar city",
+   "within Sohar",
+   "Sohar city limits"
+  ],
+  "equipment": "40ft reefer, truck with genset",
+  "rate": 100,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 100,
+  "high": 100,
+  "latest": "2026-10-15",
+  "earliest": "2026-10-15",
+  "refs": [
+   "SSTTA/QTN/2026/10-271"
+  ],
+  "notes": "Waiting OMR 50 per truck per day beyond free time."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Sohar town / Sohar city limits",
+  "aliases": [
+   "Sohar",
+   "Sohar city",
+   "within Sohar",
+   "Sohar city limits"
+  ],
+  "equipment": "40ft reefer, truck without genset",
+  "rate": 70,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 70,
+  "high": 70,
+  "latest": "2026-10-15",
+  "earliest": "2026-10-15",
+  "refs": [
+   "SSTTA/QTN/2026/10-271"
+  ],
+  "notes": "Unpowered move at consignee's risk."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Saham",
+  "aliases": [
+   "Saham",
+   "Magaisa"
+  ],
+  "equipment": "20ft general container",
+  "rate": 125,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 125,
+  "high": 125,
+  "latest": "2026-09-03",
+  "earliest": "2026-08-14",
+  "refs": [
+   "SSTTA/QTN/2026/08-___ (Callao 20SD)",
+   "SSTTA/QTN/2026/09-200"
+  ],
+  "notes": "Both quotations are for the same enquiry (original and revision). Includes normal waiting at Al Madina CFS; detention OMR 30 after 4 hours."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Barka",
+  "aliases": [
+   "Barka",
+   "Barka Industrial Area"
+  ],
+  "equipment": "General (non-reefer) truck, 20ft / 40ft container",
+  "rate": 140,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Owner template",
+  "quotations": 2,
+  "low": 130,
+  "high": 140,
+  "latest": "2026-10-18",
+  "earliest": "2026-09-28",
+  "refs": [
+   "SSTTA/QTN/2026/10-XXX (Sohar/Salalah to Barka)",
+   "SSTTA/QTN/2026/09-247"
+  ],
+  "notes": "Owner's template rate. An earlier quotation (28 Sep 2026) gave OMR 130 for a 20ft."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Barka",
+  "aliases": [
+   "Barka",
+   "Barka Industrial Area"
+  ],
+  "equipment": "Reefer truck with genset",
+  "rate": 280,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Owner template",
+  "quotations": 2,
+  "low": 250,
+  "high": 280,
+  "latest": "2026-10-18",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/10-XXX (Sohar/Salalah to Barka)",
+   "SSTTA/QTN/2026/09-220"
+  ],
+  "notes": "Owner's template rate. An earlier quotation (8 Sep 2026) gave OMR 250 with genset."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Barka",
+  "aliases": [
+   "Barka",
+   "Barka Industrial Area"
+  ],
+  "equipment": "Reefer container on truck without genset (unpowered)",
+  "rate": 200,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 200,
+  "high": 200,
+  "latest": "2026-09-08",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/09-220"
+  ],
+  "notes": "Inconsistent with the owner's template: OMR 200 for an unpowered reefer is above the template's OMR 140 general rate. Owner to confirm before the bot uses it."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Seeb / Mabelah / Al Hail",
+  "aliases": [
+   "Seeb",
+   "Al Seeb",
+   "Mabelah",
+   "Mabela",
+   "Al Mabelah",
+   "Ma'belah",
+   "Mabailah",
+   "South Mabelah",
+   "Al Hail",
+   "Al Hail North",
+   "North Al Hail"
+  ],
+  "equipment": "20ft general container",
+  "rate": 150,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Indicative",
+  "quotations": 4,
+  "low": 130,
+  "high": 170,
+  "latest": "2026-09-09",
+  "earliest": "2026-08-16",
+  "refs": [
+   "SSTTA/QTN/2026/08-___ (chewing gum 20ft)",
+   "SSTTA/QTN/2026/08-199 Rev1",
+   "SSTTA/QTN/2026/09-207",
+   "SSTTA/QTN/2026/09-223 (1 x 20ft)"
+  ],
+  "notes": "Only 20ft seen. Spread is 31%: 130 (Seeb, incl. empty return), 150 twice (Mabelah), 170 (Al Hail, incl. waiting). Most common figure used."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Rusayl",
+  "aliases": [
+   "Rusayl",
+   "Al Rusayl",
+   "Rusayl Industrial Area",
+   "Rusayl Industrial Estate",
+   "Al Rusayl Industrial City"
+  ],
+  "equipment": "20ft / 40ft general container",
+  "rate": 145,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Firm",
+  "quotations": 4,
+  "low": 140,
+  "high": 145,
+  "latest": "2026-10-13",
+  "earliest": "2026-08-06",
+  "refs": [
+   "SSTTA/QTN/2026/08-171",
+   "SSTTA/QTN/2026/09-217",
+   "SSTTA/QTN/2026/09-225 (1 x 20ft)",
+   "SSTTA/QTN/2026/10-265"
+  ],
+  "notes": "Same rate for 20ft and 40ft. Three of the four quotations are for one customer. The latest quotation (13 Oct 2026, another customer) is OMR 140 including empty return. Detention OMR 50 after 4 hours."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Muscat city (Ghala / Bausher / Ruwi / Wadi Kabir)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits",
+   "Ghala",
+   "Bausher",
+   "Al Khuwair",
+   "Ruwi",
+   "Wadi Kabir",
+   "Muttrah",
+   "Qurum",
+   "Azaiba",
+   "Ghubrah",
+   "Madinat Sultan Qaboos"
+  ],
+  "equipment": "20ft / 40ft general container",
+  "rate": 140,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 140,
+  "high": 145,
+  "latest": "2026-09-10",
+  "earliest": "2026-08-25",
+  "refs": [
+   "SSTTA/QTN/2026/08-182",
+   "SSTTA/QTN/2026/09-227"
+  ],
+  "notes": "Most recent used. The 145 was a DG load; DG permits or escorts are extra at actual. Deliveries beyond city limits or needing special access are quoted separately."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Muscat city (Ghala / Bausher / Ruwi / Wadi Kabir)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits"
+  ],
+  "equipment": "40ft reefer, truck with genset",
+  "rate": 200,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 200,
+  "high": 200,
+  "latest": "2026-10-15",
+  "earliest": "2026-10-15",
+  "refs": [
+   "SSTTA/QTN/2026/10-271"
+  ],
+  "notes": "Waiting OMR 50 per truck per day beyond free time."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Muscat city (Ghala / Bausher / Ruwi / Wadi Kabir)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits"
+  ],
+  "equipment": "40ft reefer, truck without genset",
+  "rate": 170,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 170,
+  "high": 170,
+  "latest": "2026-10-15",
+  "earliest": "2026-10-15",
+  "refs": [
+   "SSTTA/QTN/2026/10-271"
+  ],
+  "notes": "Unpowered move at consignee's risk."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Al Amerat",
+  "aliases": [
+   "Al Amerat",
+   "Amerat",
+   "Al Amrat"
+  ],
+  "equipment": "40ft HC general container",
+  "rate": 160,
+  "currency": "OMR",
+  "basis": "per container, one way",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 160,
+  "high": 160,
+  "latest": "2026-10-10",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/09-219",
+   "SSTTA/QTN/2026/10-261"
+  ],
+  "notes": "Both quotations are for the same customer. Detention OMR 50 after 4 hours."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Jifnain",
+  "aliases": [
+   "Jifnain",
+   "Al Jifnain",
+   "Jefnain",
+   "Al Jafnayn"
+  ],
+  "equipment": "20ft general container",
+  "rate": 416.13,
+  "currency": "USD",
+  "basis": "per container",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 416.13,
+  "high": 416.13,
+  "latest": "2026-08-24",
+  "earliest": "2026-08-24",
+  "refs": [
+   "SSTTA/QTN/2026/08-211 (FCL 20ft)"
+  ],
+  "notes": "Quoted in USD (OMR 160 equivalent)."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Jifnain",
+  "aliases": [
+   "Jifnain",
+   "Al Jifnain",
+   "Jefnain",
+   "Al Jafnayn",
+   "TOGS Petroleum Logistics Complex"
+  ],
+  "equipment": "40ft HC container on flatbed trailer",
+  "rate": 468.14,
+  "currency": "USD",
+  "basis": "per container",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 468.14,
+  "high": 468.14,
+  "latest": "2026-10-16",
+  "earliest": "2026-10-16",
+  "refs": [
+   "SSTTA/QTN/2026/10-274",
+   "SSTTA/QTN/2026/10-275"
+  ],
+  "notes": "OMR 180 equivalent. Both quotations same customer, same day (one in USD, one in AED). Site gate passes and offloading by consignee."
+ },
+ {
+  "from": "Sohar Port",
+  "to": "Ibri (via Yanqul)",
+  "aliases": [
+   "Ibri",
+   "Yanqul"
+  ],
+  "equipment": "40ft HC general container",
+  "rate": 700,
+  "currency": "USD",
+  "basis": "per trip (per container)",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 700.0,
+  "high": 700.0,
+  "latest": "2026-07-08",
+  "earliest": "2026-07-08",
+  "refs": [
+   "SS/FCL-CLR/2026/____ (30 x 40ft HC)"
+  ],
+  "notes": "OMR 269.15 equivalent. Project move of 30 containers; site-specific."
+ },
+ {
+  "from": "Sohar CFS (LCL / loose cargo)",
+  "to": "Sohar town / Sohar city limits",
+  "aliases": [
+   "Sohar",
+   "Sohar city",
+   "within Sohar",
+   "Sohar city limits"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 60,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Indicative",
+  "quotations": 3,
+  "low": 40,
+  "high": 60,
+  "latest": "2026-10-19",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/09-223 (LCL machine)",
+   "SSTTA/QTN/2026/09-LCL01",
+   "SSTTA/QTN/2026/10-288"
+  ],
+  "notes": "Three different figures; most recent used."
+ },
+ {
+  "from": "Sohar CFS (LCL / loose cargo)",
+  "to": "Seeb / Mabelah / Al Hail",
+  "aliases": [
+   "Seeb",
+   "Al Seeb",
+   "Mabelah",
+   "Mabela",
+   "Al Mabelah",
+   "Ma'belah",
+   "Al Hail"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 60,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 60,
+  "high": 60,
+  "latest": "2026-08-25",
+  "earliest": "2026-08-25",
+  "refs": [
+   "SSTTA/QTN/2026/08-213"
+  ],
+  "notes": ""
+ },
+ {
+  "from": "Sohar CFS (LCL / loose cargo)",
+  "to": "Rusayl",
+  "aliases": [
+   "Rusayl",
+   "Al Rusayl",
+   "Rusayl Industrial Area"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 70,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 70,
+  "high": 70,
+  "latest": "2026-09-17",
+  "earliest": "2026-09-17",
+  "refs": [
+   "SSTTA/QTN/2026/09-LCL02"
+  ],
+  "notes": ""
+ },
+ {
+  "from": "Sohar CFS (LCL / loose cargo)",
+  "to": "Muscat city (Ghala / Bausher / Ruwi / Wadi Kabir)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits",
+   "Ghala",
+   "Bausher",
+   "Ruwi",
+   "Muttrah",
+   "Madinat Sultan Qaboos",
+   "MSQ",
+   "Ghubrah"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 60,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Indicative",
+  "quotations": 9,
+  "low": 60,
+  "high": 100,
+  "latest": "2026-10-08",
+  "earliest": "2026-07-27",
+  "refs": [
+   "SSTTA/QTN/2026/07-144",
+   "SSTTA/QTN/2026/08-177 (LCL)",
+   "SSTTA/QTN/2026/08-212",
+   "SSTTA/QTN/2026/09-176",
+   "SSTTA/QTN/2026/09-209",
+   "SSTTA/QTN/2026/09-LCL01",
+   "SSTTA/QTN/2026/09-LCL03",
+   "SSTTA/QTN/2026/09-LCL04",
+   "SSTTA/QTN/2026/10-___ (air/LCL 4 pallets)"
+  ],
+  "notes": "Most common figure used (5 of 9 at OMR 60), but the three latest quotations are 100, 100 and 80, so the going rate may have risen. Owner to confirm."
+ },
+ {
+  "from": "Sohar CFS (LCL / loose cargo)",
+  "to": "Samail",
+  "aliases": [
+   "Samail",
+   "Sumail"
+  ],
+  "equipment": "LCL / loose cargo, one truck",
+  "rate": 160,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 153.799,
+  "high": 160,
+  "latest": "2026-08-24",
+  "earliest": "2026-07-24",
+  "refs": [
+   "SSTTA/QTN/2026/07-158",
+   "SSTTA/QTN/2026/08-211 (LCL)"
+  ],
+  "notes": "Most recent used; the two agree within 5%."
+ },
+ {
+  "from": "Sohar CFS (LCL / loose cargo)",
+  "to": "Salalah",
+  "aliases": [
+   "Salalah"
+  ],
+  "equipment": "LCL / loose cargo, one truck",
+  "rate": 350,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Indicative",
+  "quotations": 2,
+  "low": 173.024,
+  "high": 350,
+  "latest": "2026-09-11",
+  "earliest": "2026-09-06",
+  "refs": [
+   "SSTTA/QTN/2026/09-208",
+   "SSTTA/QTN/2026/09-____ (LCL inflatables)"
+  ],
+  "notes": "The two quotations, five days apart, differ by a factor of two (OMR 173 against OMR 350). Most recent used. Owner to confirm."
+ },
+ {
+  "from": "Barka CFS (LCL / loose cargo)",
+  "to": "Muscat city (Ghala / Bausher / Ruwi / Wadi Kabir)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 60,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 60,
+  "high": 60,
+  "latest": "2026-10-08",
+  "earliest": "2026-10-08",
+  "refs": [
+   "SSTTA/QTN/2026/10-___ (air/LCL 4 pallets)"
+  ],
+  "notes": ""
+ },
+ {
+  "from": "Barka CFS (LCL / loose cargo)",
+  "to": "Samail",
+  "aliases": [
+   "Samail",
+   "Sumail"
+  ],
+  "equipment": "LCL / loose cargo, one truck",
+  "rate": 350,
+  "currency": "USD",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 350.0,
+  "high": 350.0,
+  "latest": "2026-07-24",
+  "earliest": "2026-07-24",
+  "refs": [
+   "SSTTA/QTN/2026/07-158"
+  ],
+  "notes": "OMR 134.57 equivalent."
+ },
+ {
+  "from": "Barka CFS (LCL / loose cargo)",
+  "to": "Salalah",
+  "aliases": [
+   "Salalah"
+  ],
+  "equipment": "LCL / loose cargo, one truck",
+  "rate": 350,
+  "currency": "USD",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 350.0,
+  "high": 350.0,
+  "latest": "2026-09-06",
+  "earliest": "2026-09-06",
+  "refs": [
+   "SSTTA/QTN/2026/09-208"
+  ],
+  "notes": "OMR 134.57 equivalent. See the note on Sohar CFS to Salalah."
+ },
+ {
+  "from": "Barka CFS (LCL / loose cargo)",
+  "to": "Sohar town / Sohar city limits",
+  "aliases": [
+   "Sohar",
+   "Sohar city"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 60,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 60,
+  "high": 60,
+  "latest": "2026-09-08",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/09-223 (LCL machine)"
+  ],
+  "notes": "Delivery address was not confirmed in the quotation."
+ },
+ {
+  "from": "Muscat CFS (LCL / loose cargo)",
+  "to": "Muscat city (Ghala / Bausher / Ruwi / Wadi Kabir)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 45,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 45,
+  "high": 45,
+  "latest": "2026-10-08",
+  "earliest": "2026-10-08",
+  "refs": [
+   "SSTTA/QTN/2026/10-___ (air/LCL 4 pallets)"
+  ],
+  "notes": ""
+ },
+ {
+  "from": "Muscat CFS (LCL / loose cargo)",
+  "to": "Samail",
+  "aliases": [
+   "Samail",
+   "Sumail"
+  ],
+  "equipment": "LCL / loose cargo, one truck",
+  "rate": 300,
+  "currency": "USD",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 300.0,
+  "high": 300.0,
+  "latest": "2026-07-24",
+  "earliest": "2026-07-24",
+  "refs": [
+   "SSTTA/QTN/2026/07-158"
+  ],
+  "notes": "OMR 115.35 equivalent."
+ },
+ {
+  "from": "Muscat CFS (LCL / loose cargo)",
+  "to": "Salalah",
+  "aliases": [
+   "Salalah"
+  ],
+  "equipment": "LCL / loose cargo, one truck",
+  "rate": 250,
+  "currency": "USD",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 250.0,
+  "high": 250.0,
+  "latest": "2026-09-06",
+  "earliest": "2026-09-06",
+  "refs": [
+   "SSTTA/QTN/2026/09-208"
+  ],
+  "notes": "OMR 96.12 equivalent. See the note on Sohar CFS to Salalah."
+ },
+ {
+  "from": "Muscat CFS (LCL / loose cargo)",
+  "to": "Sohar town / Sohar city limits",
+  "aliases": [
+   "Sohar",
+   "Sohar city"
+  ],
+  "equipment": "LCL / loose cargo, one small truck",
+  "rate": 75,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 75,
+  "high": 75,
+  "latest": "2026-09-08",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/09-223 (LCL machine)"
+  ],
+  "notes": "Delivery address was not confirmed in the quotation."
+ },
+ {
+  "from": "Muscat Airport",
+  "to": "Muscat city limits (incl. Seeb / Mabelah / Al Hail / Rusayl / Ghala / Ruwi)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits",
+   "Seeb",
+   "Mabelah",
+   "Al Mabelah",
+   "Al Hail",
+   "Rusayl",
+   "Ghala",
+   "Bausher",
+   "Ruwi",
+   "Muttrah",
+   "Al Khuwair"
+  ],
+  "equipment": "Air cargo up to about 300 kg chargeable",
+  "rate": 25,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Indicative",
+  "quotations": 3,
+  "low": 25,
+  "high": 40,
+  "latest": "2026-09-09",
+  "earliest": "2026-07-29",
+  "refs": [
+   "SSTTA/QTN/2026/07-163 (100 kg)",
+   "SSTTA/QTN/2026/08-214",
+   "SSTTA/QTN/2026/09-225 (air)"
+  ],
+  "notes": "Most common figure used; the two 25s are one consignment quoted twice. An earlier quotation calls OMR 40 the standard Muscat-side tariff."
+ },
+ {
+  "from": "Muscat Airport",
+  "to": "Muscat city limits (incl. Seeb / Mabelah / Al Hail / Rusayl / Ghala / Ruwi)",
+  "aliases": [
+   "Muscat",
+   "Muscat city",
+   "Muscat city limits",
+   "Seeb",
+   "Mabelah",
+   "Al Mabelah",
+   "Al Hail",
+   "Rusayl",
+   "Ghala",
+   "Bausher",
+   "Ruwi",
+   "Muttrah",
+   "Al Khuwair"
+  ],
+  "equipment": "Air cargo about 500 kg to 2.2 t (pallets)",
+  "rate": 50,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Indicative",
+  "quotations": 3,
+  "low": 45,
+  "high": 57.675,
+  "latest": "2026-10-08",
+  "earliest": "2026-07-25",
+  "refs": [
+   "SSTTA/QTN/2026/07-163 (886 kg)",
+   "SSTTA/QTN/2026/08-172 (air)",
+   "SSTTA/QTN/2026/10-___ (air/LCL 4 pallets)"
+  ],
+  "notes": "Rate rises with weight (45 at 0.8 t, 50 at 0.8 t, about 58 at 2.2 t). Most recent used."
+ },
+ {
+  "from": "Muscat Airport",
+  "to": "Jifnain",
+  "aliases": [
+   "Jifnain",
+   "Al Jifnain",
+   "Jefnain"
+  ],
+  "equipment": "Air cargo about 3.3 t (4 wooden cases)",
+  "rate": 57.675,
+  "currency": "OMR",
+  "basis": "per trip",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 57.675,
+  "high": 57.675,
+  "latest": "2026-07-25",
+  "earliest": "2026-07-25",
+  "refs": [
+   "SSTTA/QTN/2026/07-162"
+  ],
+  "notes": ""
+ },
+ {
+  "from": "Muscat Airport",
+  "to": "Saham",
+  "aliases": [
+   "Saham",
+   "Magaisa"
+  ],
+  "equipment": "Air cargo about 2 t (2 pallets), one truck",
+  "rate": 80,
+  "currency": "OMR",
+  "basis": "per truck",
+  "confidence": "Single quotation",
+  "quotations": 1,
+  "low": 80,
+  "high": 80,
+  "latest": "2026-09-08",
+  "earliest": "2026-09-08",
+  "refs": [
+   "SSTTA/QTN/2026/09-223 (air)"
+  ],
+  "notes": ""
+ },
+ {
+  "from": "Salalah Port",
+  "to": "Barka",
+  "aliases": [
+   "Barka",
+   "Barka Industrial Area"
+  ],
+  "equipment": "General (non-reefer) truck, 20ft / 40ft container",
+  "rate": 550,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Owner template",
+  "quotations": 1,
+  "low": 550,
+  "high": 550,
+  "latest": "2026-10-18",
+  "earliest": "2026-10-18",
+  "refs": [
+   "SSTTA/QTN/2026/10-XXX (Sohar/Salalah to Barka)"
+  ],
+  "notes": "Owner's template rate; no other quotation covers this lane."
+ },
+ {
+  "from": "Salalah Port",
+  "to": "Barka",
+  "aliases": [
+   "Barka",
+   "Barka Industrial Area"
+  ],
+  "equipment": "Reefer truck with genset",
+  "rate": 1100,
+  "currency": "OMR",
+  "basis": "per container",
+  "confidence": "Owner template",
+  "quotations": 1,
+  "low": 1100,
+  "high": 1100,
+  "latest": "2026-10-18",
+  "earliest": "2026-10-18",
+  "refs": [
+   "SSTTA/QTN/2026/10-XXX (Sohar/Salalah to Barka)"
+  ],
+  "notes": "Owner's template rate; no other quotation covers this lane."
+ }
+]
