@@ -466,3 +466,14 @@ What was built in SST 2 (draft only; live is still `386fb9f1-50d0-49eb-82b0-c5f9
   - Two test emails.
   - The test used one round-robin turn.
 - **Still in test mode** (`MODE = 'test'`): the customer PDF and the salesperson WhatsApp go only for the owner's tester numbers. Go live = `MODE = 'live'`.
+
+## 23 Nov 2026: Customs auto quotes LIVE for every number
+
+- **Owner:** "let any number that text the number get quotes as well for import customs clearance".
+- **Change:** "Customs auto quote" `MODE` is now `'live'`; nothing else changed (checked with the version diff). SST 2 version `1176a1a4-2804-4779-af91-c6242049f79a` published.
+- **Now:**
+  - Every real customer with a straightforward import customs enquiry gets the quotation PDF on WhatsApp.
+  - The salesperson whose turn it is gets the WhatsApp copy, through SST W, at the number in the Sales Team sheet.
+  - The salesperson email still goes to the fixed test address. That is the testing-phase switch for sales emails, unchanged until "go live".
+  - Dummy `99999` numbers never get WhatsApp messages.
+- **Rollback to test mode:** republish `1dabb7bc-c8e9-4fd7-91db-104986e5b83e`. Off entirely: `386fb9f1-50d0-49eb-82b0-c5f996fd3384`.

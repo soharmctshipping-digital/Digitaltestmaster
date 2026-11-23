@@ -3,7 +3,7 @@
 // sea FCL at Sohar Port (dry / high cube, 20ft or 40ft), sea LCL through Sohar, air at Muscat Airport, not dangerous goods.
 // Anything else, or anything unclear, returns auto: false and goes to the sales team exactly as before.
 // MODE 'test': the PDF goes only to the testers below. MODE 'live': to every real customer. Switch at "go live".
-const MODE = 'test';
+const MODE = 'live';
 const TESTERS = []; // owner's test numbers are set in n8n only, not in the repo
 const NL = String.fromCharCode(10);
 const p = $('Pick salesperson').first().json;
