@@ -389,3 +389,18 @@ logged exchanges, and the supporting workflows and data. Nothing was changed, ru
 - Shortened: Sea "FCL, LCL, bulk, RoRo", Air "Import or export", Warehousing "Storage and handling", Agency "Vessels and crew". The build now refuses descriptions over 20 characters and titles over 30.
 - New Meta draft `1479400180965410` ("SST service form v24d one page per service"): 0 validation errors. T8 "Form preview" points at it.
 - v24c draft `2709352036165185` is now unused; add it to the drafts to delete (with approval).
+
+## 23 Nov 2026: Form v24d LIVE (owner said "publish it, and yes delete the drafts")
+
+- **Form v24d published** on Meta (id `1479400180965410`). Published forms can't be edited; any change needs a new form.
+- **Drafts deleted** (owner approved): 990727460359037, 1742576754540913, 1822013712443489, 2709352036165185.
+- **SST 1 published**, version `e50e8895-ecc3-4348-94ab-558656245f1b` (was `67cb73a4-2809-4b89-b2dd-7e1ca1ce7281`). Changes against the old live version:
+  - "Read message": v24 reader. Keeps only the chosen service's answers, adds the new questions, fixes Muscat Airport for air, and leaves out "Not in containers".
+  - "Build Claude request": the service form id changed to v24d in `FORM` and `PORT_SEARCH_FORM`, plus its note. Checked line by line against the old live version: only those 3 lines differ. This file is not in the repo because it holds staff phone numbers.
+- **Rollback:** republish `67cb73a4-2809-4b89-b2dd-7e1ca1ce7281`. The v23 form stays published, so the rollback works straight away.
+- **Live tests:** 9 runs (executions 2342 to 2350), one per service, on dummy numbers 999990007240 to 999990007248. No WhatsApp messages were sent. The script is `bot_build/v24/live24.js`.
+  - Each run sent the details form and the service form together. Each service form also carried a stray "LEAK SHOULD NOT APPEAR" answer from another service.
+  - All 9 succeeded, and the stray answer was dropped every time.
+  - Checked: sea export shows Sohar Port as the port of loading and extra free days; air import shows Muscat Airport as the destination and the exhibition question; customs by road shows the number of trucks, no container size and the duty-estimate value; transit shows the empty return and the consignee; project shows "shipped as" and the crane; warehousing shows "arriving as" and delivery areas; agency shows vessel size, days and crew.
+  - Test artefact: because both forms arrived in one go, the bot also attached the service-form button to its reply. Real customers send the forms one after the other.
+- **Test chats to clear** in sst_chats: phones 999990007240 to 999990007248.
