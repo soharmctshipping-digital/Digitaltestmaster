@@ -374,3 +374,11 @@ logged exchanges, and the supporting workflows and data. Nothing was changed, ru
 5. **Sales Team tab is in test mode.** All four salespeople point at one test WhatsApp
    number and one test email; the real ones are parked in the notes column. Whether any
    WhatsApp message can still reach a real salesperson is being checked (see section 3).
+
+## 23 Nov 2026 — Form v24c draft accepted by Meta (not published)
+
+- T8 "Form definition" replaced with the v24c source (T8 version `5a9122a8-d3a2-4b28-99f4-ca6798ae44bf`); verified identical to `bot_build/v24/v24_form_definition.js`.
+- SST 1 draft "Read message" replaced with the v24 reader (draft version `9f2ffcac-b79b-4fab-bf11-a897cae0270d`). **Live SST 1 is unchanged** (`67cb73a4-2809-4b89-b2dd-7e1ca1ce7281`).
+- Meta draft form `2709352036165185` ("SST service form v24c one page per service"): **0 validation errors**. T8 "Form preview" now points at it.
+- Not yet done (waiting for the owner's approval after the preview): publish the form, switch SST 1 to the new form id, publish SST 1, live tests with dummy numbers.
+- Failed drafts still to delete with approval: 990727460359037, 1742576754540913, 1822013712443489.
