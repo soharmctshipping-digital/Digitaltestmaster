@@ -57,7 +57,7 @@ function formText(f) {
   if (m === 'land') add('Where', ({ import: 'Into Oman, from another GCC country', export: 'Out of Oman, to another GCC country', oman: 'Within Oman' })[dir] || dir);
   else if (dir) add('Import or export', t(dir));
   // equipment
-  add('Container size', g('size') ? t(g('size')) : '');
+  add('Container size', g('size') && g('size') !== 'none' ? t(g('size')) : '');
   add('Container type', g('ctype') ? t(g('ctype')) : '');
   { const tp = g('temp'); add(m === 'warehousing' ? 'Storage temperature' : 'Reefer set temperature', /^[-+]?\d+(\.\d+)?$/.test(tp) ? tp + '°C' : tp); }
   add('Out-of-gauge cargo size (' + du + ')', g('oog'));

@@ -134,7 +134,7 @@ const p3 = [
   M('customs', [radio('equip_customs', 'What is being cleared?', [['fcl', 'Full container load (FCL)', 'A 20 foot or 40 foot container'], ['reefer', 'Reefer container', 'Temperature-controlled (chilled or frozen) cargo'], ['lcl', 'Less than container load (LCL)', 'Smaller shipments, charged by volume'], ['vehicles', 'Vehicles', 'Cars, trucks, buses or machinery on wheels'], ['breakbulk', 'Break bulk (pieces)', 'Steel, machinery, crates and similar'], ['project', 'Project or heavy-lift cargo', 'Oversized or very heavy units'], ['air', 'Air cargo', 'Cleared at an airport']]),
     date('eta_customs', 'ETA (Estimated Time of Arrival)', false),
     radio('code_customs', 'Oman customs code?', YNS, 'Does the importer have one?')]),
-  { type: 'If', condition: '(' + D + "form.equip_customs} == 'fcl') || (" + D + "form.equip_customs} == 'reefer')", then: [radio('size_customs', 'Container size', SIZE)] },
+  M('customs', [radio('size_customs', 'Container size', SIZE.concat([['none', 'Not in containers']]))]),
   DT('via_customs', 'sea', [radio('delivery_sea_customs', 'Delivery after clearance?', YN)]),
   DT('via_customs', 'air', [radio('delivery_air_customs', 'Delivery after clearance?', YN)]),
   F('delivery_sea_customs', 'yes', [ta('delivery_address_customs', 'Delivery address', true, 'Full address, with area and city')]),
@@ -222,7 +222,10 @@ const nav = (next, payload) => ({ name: 'navigate', next: { type: 'screen', name
 const LETTER = ['A', 'B', 'C', 'D'];
 const chains = {};
 for (const m of SVC) {
-  let pages = [prune(P2, m), prune(P3, m), prune(P4, m)].filter(pg => fieldsOf(pg, []).length);
+  // Meta counts every page a page can lead to (at most 10 from the first page), so each service is one page,
+  // except sea freight, which needs two to stay within 100 components a page.
+  const raw = [prune(P2, m), prune(P3, m), prune(P4, m)];
+  let pages = (m === 'sea' ? [raw[0], raw[1].concat(raw[2])] : [raw[0].concat(raw[1], raw[2])]).filter(pg => fieldsOf(pg, []).length);
   if (DIRF[m]) pages[0] = [clone(DIRF[m])].concat(pages[0]);
   pages = pages.map(pg => toForm(pg, fieldsOf(pg, [])));
   const ids = pages.map((pg, i) => m.toUpperCase() + '_' + LETTER[i]);
@@ -243,7 +246,7 @@ for (const m of SVC) {
       pages.forEach((p, j) => { for (const f of own[j]) pay[f] = D + (j === i ? 'form.' : 'screen.' + ids[j] + '.form.') + f + '}'; });
       ft = footer('Send', { name: 'complete', payload: pay });
     }
-    const title = i === 0 ? SHORT[m] : (last ? 'Final details' : 'A few details');
+    const title = i === 0 ? SHORT[m] : 'Cargo details';
     const sc = { id: ids[i], title, data, layout: { type: 'SingleColumnLayout', children: pg.concat([ft]) } };
     if (last) Object.assign(sc, { terminal: true, success: true });
     scr.push(sc);
@@ -252,14 +255,10 @@ for (const m of SVC) {
 }
 const SUB = { sea: 'FCL, LCL, bulk or RoRo', air: 'Import or export by air', land: 'Oman and GCC trucks', customs: 'Sea, air or road', transit: 'Transit Bayan', project: 'Heavy and oversized', warehousing: 'Storage, handling, 3PL', containers: 'New or used', agency: 'Vessels, crew, supplies' };
 const TITLE = { sea: 'Sea freight', air: 'Air freight', land: 'Land transport', customs: 'Import customs clearance', transit: 'Transit through Oman', project: 'Project and heavy-lift', warehousing: 'Warehousing and 3PL', containers: 'Buy or lease containers', agency: 'Shipping agency' };
-// WhatsApp allows at most 10 next pages from one page, so the four freight services sit behind one "Freight" choice.
-const FREIGHT = ['sea', 'air', 'land', 'project'], OTHERS = ['customs', 'transit', 'warehousing', 'containers', 'agency'];
 const item = m => ({ id: m, 'main-content': { title: TITLE[m], description: SUB[m] }, 'on-click-action': { name: 'navigate', next: { type: 'screen', name: chains[m][0].id }, payload: {} } });
 const serviceScreen = { id: 'SERVICE', title: 'How can we help?', data: {}, layout: { type: 'SingleColumnLayout', children: [
-  { type: 'NavigationList', name: 'service_list', 'list-items': [{ id: 'freight', 'main-content': { title: 'Freight', description: 'Sea, air, land, project' }, 'on-click-action': { name: 'navigate', next: { type: 'screen', name: 'FREIGHT' }, payload: {} } }].concat(OTHERS.map(item)) }] } };
-const freightScreen = { id: 'FREIGHT', title: 'Freight', data: {}, layout: { type: 'SingleColumnLayout', children: [
-  { type: 'NavigationList', name: 'freight_list', 'list-items': FREIGHT.map(item) }] } };
-const screens = [serviceScreen, freightScreen].concat(...SVC.map(m => chains[m]));
+  { type: 'NavigationList', name: 'service_list', 'list-items': SVC.map(item) }] } };
+const screens = [serviceScreen].concat(...SVC.map(m => chains[m]));
 const flow = { version: '7.0', screens };
 // ---------- build check: refuse a form that breaks WhatsApp's limits or mixes services ----------
 const LIMITS = { TextInput: ['label', 20], TextArea: ['label', 20], Dropdown: ['label', 20], RadioButtonsGroup: ['label', 30], CheckboxGroup: ['label', 30], DatePicker: ['label', 40], TextSubheading: ['text', 80], Footer: ['label', 35] };
@@ -286,7 +285,11 @@ for (const m of SVC) {
   for (const k of Object.keys(pay)) { const s = svcOfField(k); if (k !== 'form' && s !== 'all' && s !== m) problems.push(m + ': the Send button would carry ' + k + ' from another service'); }
   for (const sc of chains[m]) { const vis = fieldsOf(sc.layout.children, []).length; if (!vis) problems.push(sc.id + ' has no questions'); }
 }
+// Meta: a page may lead (directly or further on) to at most 10 pages.
+{ const nexts = sc => { const o = []; const w = x => { if (Array.isArray(x)) x.forEach(w); else if (x && typeof x === 'object') { if (x.name === 'navigate' && x.next) o.push(x.next.name); Object.values(x).forEach(w); } }; w(sc.layout.children); return o; };
+  const byId = Object.fromEntries(screens.map(sc => [sc.id, sc]));
+  for (const sc of screens) { const seen = new Set(); const st = nexts(sc); while (st.length) { const n = st.pop(); if (!seen.has(n)) { seen.add(n); st.push(...nexts(byId[n])); } } if (seen.size > 10) problems.push(sc.id + ' leads to ' + seen.size + ' pages (limit 10)'); } }
 const size = JSON.stringify(flow).length;
 if (size > 1000000) problems.push('the form is ' + size + ' characters, which is too large');
 if (problems.length) throw new Error('Form not built. Fix these first: ' + problems.join(' | '));
-return [{ json: { name: 'SST service form v24b own pages per service', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];
+return [{ json: { name: 'SST service form v24c one page per service', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];

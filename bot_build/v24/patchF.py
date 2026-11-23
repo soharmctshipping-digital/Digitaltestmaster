@@ -12,6 +12,7 @@ s = rep(s, "  const m = v(f.mode);\n  const st = m === 'sea' ? v(f.sea_type) : '
     for (const key of Object.keys(f)) if (!own(key)) delete f[key]; }
   const EV = { no: 'No', electric: 'Electric', hybrid: 'Hybrid', mix: 'A mix' };
 """)
+s = rep(s, "  add('Container size', g('size') ? t(g('size')) : '');", "  add('Container size', g('size') && g('size') !== 'none' ? t(g('size')) : '');")
 s = rep(s, "  add('In running condition', g('running') ? t(g('running')) : '');\n",
            "  add('In running condition', g('running') ? t(g('running')) : '');\n  add('Electric or hybrid', EV[g('ev')] || g('ev'));\n")
 s = rep(s, "  add('Heaviest piece (' + hu + ')', g('heavy'));\n",

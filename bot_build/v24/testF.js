@@ -6,7 +6,7 @@ const reader = new Function('$input', fs.readFileSync('v24_Read_message.js', 'ut
 const read = rj => reader({ all: () => [{ json: { body: { entry: [{ changes: [{ value: { metadata: { phone_number_id: '1451398948053197' }, contacts: [{ wa_id: '1', profile: { name: 'x' } }], messages: [{ from: '1', id: 'a', timestamp: '1795085662', type: 'interactive', interactive: { nfm_reply: { response_json: JSON.stringify(rj) } } }] } }] }] } } }] })[0].json.content;
 const S = Object.fromEntries(flow.screens.map(s => [s.id, s]));
 function fill(svc, choose) {
-  const items = S.SERVICE.layout.children[0]['list-items'].concat(S.FREIGHT.layout.children[0]['list-items']);
+  const items = S.SERVICE.layout.children[0]['list-items'];
   const first = items.find(i => i.id === svc)['on-click-action'].next.name;
   let id = first, data = {}, answers = {}, payload;
   for (let guard = 0; guard < 6; guard++) {
