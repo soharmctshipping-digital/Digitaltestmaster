@@ -64,15 +64,25 @@ These are consistent figures, but they appear only in some quotations, so it isn
 - **Sea freight FCL (shipping-line quotes):** CCRO is shown as "not included" or "at actual as per the OICT tariff", with no figure.
 - Odd single figures (OMR 10.61, OMR 11.00, OMR 18.10 per hour): not a pattern.
 
-## 4. Suggested wording for the bot's quotation (Sohar FCL import)
+## 4. How the bot puts them in the quotation (owner's rule, 23 Nov 2026)
 
-```
-CCRO Charges                     OMR 10.770 / at actual     Per shipment
-Port Container Release Order     OMR 4.300 / at actual      Per container
-Port Weighment                   OMR 4.300 / at actual      Per container
-Port Documentation               OMR 0.640 / at actual      Per container
-Container Scanning Service Fee   OMR 14.000 / 20ft & OMR 20.800 / 40ft, at actual   Per container
-Port Container Inspection        OMR 29.420 / 20ft & OMR 58.840 / 40ft, at actual   If applicable
-```
+The figure before "/ at actual" is also the billed amount, so it goes in the Amount column. Example for 1 x 40ft at Sohar container terminal:
+
+| Description | Basis / Remarks | Amount (OMR) |
+|---|---|---|
+| CCRO Charges | OMR 10.770 / at actual, per shipment | 10.770 |
+| Port Container Release Order | OMR 4.300 / at actual, per container | 4.300 |
+| Port Weighment | OMR 4.300 / at actual, per container | 4.300 |
+| Port Documentation | OMR 0.640 / at actual, per container | 0.640 |
+| Container Scanning Service Fee | OMR 20.800 / 40ft, at actual, if applicable | 20.800 |
+| Port Container Inspection | OMR 58.840 / 40ft, at actual, if applicable | 58.840 |
+
+Rules:
+- **Amount = rate x quantity:** per container x number of containers; per shipment once.
+- **Container size:** use the 20ft or 40ft figure that matches each box.
+- **Fixed lines** (CCRO, release order, weighment, documentation) go into the total.
+- **"If applicable" lines** (scanning, inspection) show their amount too, but are kept out of the total and marked "if applicable", unless the owner decides otherwise.
+- **Example totals:** for the example above, the total is OMR 20.010, and with scanning and inspection it would be OMR 99.650.
+- **Amounts with 3 decimals**, as OMR is written.
 
 The machine-readable version is in `bot_build/ccro_rates.json`.
