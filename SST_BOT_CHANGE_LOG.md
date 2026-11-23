@@ -477,3 +477,15 @@ What was built in SST 2 (draft only; live is still `386fb9f1-50d0-49eb-82b0-c5f9
   - The salesperson email still goes to the fixed test address. That is the testing-phase switch for sales emails, unchanged until "go live".
   - Dummy `99999` numbers never get WhatsApp messages.
 - **Rollback to test mode:** republish `1dabb7bc-c8e9-4fd7-91db-104986e5b83e`. Off entirely: `386fb9f1-50d0-49eb-82b0-c5f996fd3384`.
+
+## 23 Nov 2026: Issue log cleared (owner: "delete all of it")
+
+- **Reviewed first:** nothing in the log was a live customer bug.
+  - 39 rows of "Customer did not receive a WhatsApp message" were test numbers chased by SST C's unfinished-enquiry follow-up. SST C does not skip 99999 numbers; a one-line fix is offered but not done.
+  - The one real number was a spa sending promotions (16 Nov), not a customer.
+  - The 18 Nov "could not reply" alert was the staff-number bug fixed today.
+  - The AI retry, repeated-question and price-guard entries all date from 16–19 Nov, with none since.
+- **Cleared:**
+  - "Issues Log" tab in SST WhatsApp Leads: rows 2 to 51 cleared, header kept.
+  - n8n data table `sst_issues`: all 50 rows deleted, including the 4 placeholders. This was done with a new manual node pair in T8, "Run clear issues table" then "Clear issues table".
+- **Numbering:** new issues continue from number 51, because the data table ids keep counting.
