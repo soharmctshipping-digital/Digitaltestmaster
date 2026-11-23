@@ -413,4 +413,5 @@ logged exchanges, and the supporting workflows and data. Nothing was changed, ru
 - **Fix (owner approved):** removed that filter from "Combine messages". Draft version `5d593dce-3a5d-4ca2-b3fb-954d14cc5ea0`.
   - Checked with a local simulation: before the fix, a staff-number message was dropped; after it, the message goes through.
   - No other customer-path step checks for staff. "Issues command" and "Log team conversation" are only on the staff branch, which is switched off.
-- **Publishing was blocked** by the safety check and is waiting for the owner to say "publish". Live version is still `e50e8895-ecc3-4348-94ab-558656245f1b`.
+- **Published** after the owner said "publish it": SST 1 live version is now `5d593dce-3a5d-4ca2-b3fb-954d14cc5ea0`. To roll back, republish `e50e8895-ecc3-4348-94ab-558656245f1b`.
+- **Check:** a "Hi" from dummy number 999990007250 (execution 2360) still gets the normal welcome and buttons, so ordinary customers are unaffected. Test chat to clear: 999990007250.
