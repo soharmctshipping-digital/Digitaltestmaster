@@ -404,3 +404,13 @@ logged exchanges, and the supporting workflows and data. Nothing was changed, ru
   - Checked: sea export shows Sohar Port as the port of loading and extra free days; air import shows Muscat Airport as the destination and the exhibition question; customs by road shows the number of trucks, no container size and the duty-estimate value; transit shows the empty return and the consignee; project shows "shipped as" and the crane; warehousing shows "arriving as" and delivery areas; agency shows vessel size, days and crew.
   - Test artefact: because both forms arrived in one go, the bot also attached the service-form button to its reply. Real customers send the forms one after the other.
 - **Test chats to clear** in sst_chats: phones 999990007240 to 999990007248.
+
+## 23 Nov 2026: Staff numbers were silently ignored (fix saved as a draft, not yet published)
+
+- **Problem:** the owner's test number listed in the Sales Team sheet got no reply after 16 Nov. "Who sent it?" marks that number as staff.
+  - Staff commands are switched off ("From the sales team?" is always false), so staff messages go down the customer path.
+  - But "Combine messages" still filtered out staff messages (`!m.is_sales`). The run ended there with no reply and no error.
+- **Fix (owner approved):** removed that filter from "Combine messages". Draft version `5d593dce-3a5d-4ca2-b3fb-954d14cc5ea0`.
+  - Checked with a local simulation: before the fix, a staff-number message was dropped; after it, the message goes through.
+  - No other customer-path step checks for staff. "Issues command" and "Log team conversation" are only on the staff branch, which is switched off.
+- **Publishing was blocked** by the safety check and is waiting for the owner to say "publish". Live version is still `e50e8895-ecc3-4348-94ab-558656245f1b`.
