@@ -26,10 +26,10 @@ if (form['Service'] !== 'Import customs clearance') return no('not import custom
 const strip = c => String(c).replace(/^\[[^\]]*Oman time\]\s*/, '').trim();
 for (let i = at + 1; i < hist.length; i++) {
   if (hist[i].role !== 'user') continue;
-  for (const l of strip(hist[i].content).split(NL).map(x => x.trim()).filter(Boolean)) {
+  for (const l of String(hist[i].content).split(NL).map(strip).filter(Boolean)) {
     if (/^\[The customer sent a /.test(l) || /^\[File /.test(l)) continue;
-    if (/^(yes|yes,? confirm|confirm(ed)?|ok(ay)?|sure|done|no|nope|skip|later|not now|nothing( else)?|that'?s (all|it)|that is (all|it)|all done|finished|no more|all good|correct|fine|thanks?|thank you|no documents?|i (don'?t|do not) have (them|it|any)|will send (them |it )?later)[\s.!]*$/i.test(l)) continue;
-    return no('the customer added or changed details after the form');
+    // Replies about documents, thanks, yes / no are fine. New numbers or words that change something are not.
+    if (/\d/.test(l) || /\b(change|changed|wrong|instead|actually|update|different|mistake|edit|correction|should be|make it|not .* but|also|add|plus|extra|another|more containers?|now it|sorry)\b/i.test(l)) return no('the customer added or changed details after the form');
   }
 }
 const via = form['Arriving by'] || '', point = form['Clearance point'] || '', what = form['What is being cleared'] || '';

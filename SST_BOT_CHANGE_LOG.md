@@ -447,3 +447,22 @@ What was built in SST 2 (draft only; live is still `386fb9f1-50d0-49eb-82b0-c5f9
   - Draft run 2403 (dummy 2 x 40ft, delivery to Rusayl): total OMR 385.500, 2-page PDF on letterhead, email to the test address, WhatsApp skipped.
 - **Test residue to clear:** `sst_quotes` row id 21 (SST-261123-TCQ1), its Google Doc in Quote drafts (bot), and the test email.
 - **Code copies:** `bot_build/customs_quote/` (tester numbers removed).
+
+## 23 Nov 2026: Automatic customs quotations PUBLISHED (test mode)
+
+- **Published** after the owner said "publish it": SST 2 version `825360be-c1e1-476b-bbfe-2f920a88c2ac`.
+- **Fix, then republished:** SST 2 version `1dabb7bc-c8e9-4fd7-91db-104986e5b83e` (live). The after-form check now only sends an enquiry to sales for new numbers or change words. "I'll send them later", "that's correct", "ok thanks" and file messages are fine, and time stamps are stripped line by line.
+- **Rollback:** republish `386fb9f1-50d0-49eb-82b0-c5f996fd3384`.
+- **Live end-to-end test** on dummy number 999990007262: details and customs form, then "I'll send them later", then "Yes, confirm".
+  - Reference SST-261123-HLYF. SST 1 executions 2405 to 2407, SST 2 execution 2408.
+  - Quoted automatically: 1 x 20ft, Sohar Port, delivery to Sohar Industrial Estate. Total OMR 124.260 = port 20.010 + customs 50.000 + transport 50.000 + VAT 4.250.
+  - PDF rendered and email sent to the test address. Round robin picked the next salesperson.
+  - WhatsApp to the customer and to the salesperson skipped (dummy number), as designed.
+- **Test residue to clear:**
+  - sst_chats phone 999990007262.
+  - sst_quotes rows SST-261123-TCQ1 (id 21) and SST-261123-HLYF.
+  - The Leads and Quotes sheet rows for SST-261123-HLYF.
+  - Two Google Docs in Quote drafts (bot).
+  - Two test emails.
+  - The test used one round-robin turn.
+- **Still in test mode** (`MODE = 'test'`): the customer PDF and the salesperson WhatsApp go only for the owner's tester numbers. Go live = `MODE = 'live'`.
