@@ -1,0 +1,26 @@
+{
+  "checked": "2026-11-23",
+  "note": "Port and customs tariff items, passed on at cost: always print 'at actual'.",
+  "sohar_container_terminal": {
+    "fixed": [
+      {"charge": "CCRO Charges", "omr": 10.770, "usd": 28.01, "per": "shipment"},
+      {"charge": "Port Container Release Order", "omr": 4.300, "usd": 11.18, "per": "container"},
+      {"charge": "Port Weighment", "omr": 4.300, "per": "container"},
+      {"charge": "Port Documentation", "omr": 0.640, "usd": 1.66, "per": "container"}
+    ],
+    "if_applicable": [
+      {"charge": "Container Scanning Service Fee", "omr_20": 14.000, "omr_40": 20.800, "per": "container"},
+      {"charge": "Port Container Inspection", "omr_20": 29.420, "omr_40": 58.840, "per": "container"}
+    ],
+    "ccro_total_formula": "10.770 + 9.240 x containers"
+  },
+  "sohar_general_cargo_cso": {"fixed": [{"charge": "CRO / cargo release order", "omr": 10.500, "usd": 27.31, "per": "B/L", "tariff": "CSO 1 Apr 2026, clause 10.6.3 (A)"}]},
+  "port_sultan_qaboos": {"fixed": [{"charge": "CCRO / certificate charge", "omr": 10.000, "usd": 26.01, "per": "B/L", "tariff": "PSQ item 831"}]},
+  "confirm_first": [
+    {"charge": "Radioactive Detection Service", "omr": 2.000, "per": "container"},
+    {"charge": "Enhanced Security Charge", "omr": 6.460, "per": "container"},
+    {"charge": "Shifting Container for Inspection", "omr": 26.930, "per": "container"},
+    {"charge": "Truck loading at port (laden)", "omr_20": 5.000, "omr_40": 10.000, "per": "container"}
+  ],
+  "not_fixed": ["transit per-container CCRO lump sums (USD 174-213)", "Duqm", "Salalah", "one-off CCRO totals"]
+}
