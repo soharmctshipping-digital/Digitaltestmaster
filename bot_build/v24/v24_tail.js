@@ -70,8 +70,10 @@ for (const m of SVC) {
   });
   chains[m] = scr;
 }
-const SUB = { sea: 'FCL, LCL, bulk or RoRo', air: 'Import or export by air', land: 'Oman and GCC trucks', customs: 'Sea, air or road', transit: 'Transit Bayan', project: 'Heavy and oversized', warehousing: 'Storage, handling, 3PL', containers: 'New or used', agency: 'Vessels, crew, supplies' };
+const SUB = { sea: 'FCL, LCL, bulk, RoRo', air: 'Import or export', land: 'Oman and GCC trucks', customs: 'Sea, air or road', transit: 'Transit Bayan', project: 'Heavy and oversized', warehousing: 'Storage and handling', containers: 'New or used', agency: 'Vessels and crew' };
 const TITLE = { sea: 'Sea freight', air: 'Air freight', land: 'Land transport', customs: 'Import customs clearance', transit: 'Transit through Oman', project: 'Project and heavy-lift', warehousing: 'Warehousing and 3PL', containers: 'Buy or lease containers', agency: 'Shipping agency' };
+for (const k in SUB) if (SUB[k].length > 20) throw new Error('Service list description over 20: ' + k);
+for (const k in TITLE) if (TITLE[k].length > 30) throw new Error('Service list title over 30: ' + k);
 const item = m => ({ id: m, 'main-content': { title: TITLE[m], description: SUB[m] }, 'on-click-action': { name: 'navigate', next: { type: 'screen', name: chains[m][0].id }, payload: {} } });
 const serviceScreen = { id: 'SERVICE', title: 'How can we help?', data: {}, layout: { type: 'SingleColumnLayout', children: [
   { type: 'NavigationList', name: 'service_list', 'list-items': SVC.map(item) }] } };
@@ -109,4 +111,4 @@ for (const m of SVC) {
 const size = JSON.stringify(flow).length;
 if (size > 1000000) problems.push('the form is ' + size + ' characters, which is too large');
 if (problems.length) throw new Error('Form not built. Fix these first: ' + problems.join(' | '));
-return [{ json: { name: 'SST service form v24c one page per service', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];
+return [{ json: { name: 'SST service form v24d one page per service', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];

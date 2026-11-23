@@ -382,3 +382,10 @@ logged exchanges, and the supporting workflows and data. Nothing was changed, ru
 - Meta draft form `2709352036165185` ("SST service form v24c one page per service"): **0 validation errors**. T8 "Form preview" now points at it.
 - Not yet done (waiting for the owner's approval after the preview): publish the form, switch SST 1 to the new form id, publish SST 1, live tests with dummy numbers.
 - Failed drafts still to delete with approval: 990727460359037, 1742576754540913, 1822013712443489.
+
+## 23 Nov 2026 — Form v24d (fixes v24c preview errors; not published)
+
+- The v24c preview showed red errors on the first page: four service descriptions were over Meta's 20-character limit. Meta's draft check had not reported them.
+- Shortened: Sea "FCL, LCL, bulk, RoRo", Air "Import or export", Warehousing "Storage and handling", Agency "Vessels and crew". The build now refuses descriptions over 20 characters and titles over 30.
+- New Meta draft `1479400180965410` ("SST service form v24d one page per service"): 0 validation errors. T8 "Form preview" points at it.
+- v24c draft `2709352036165185` is now unused; add it to the drafts to delete (with approval).
