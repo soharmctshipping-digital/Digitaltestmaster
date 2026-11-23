@@ -289,4 +289,4 @@ for (const m of SVC) {
 const size = JSON.stringify(flow).length;
 if (size > 1000000) problems.push('the form is ' + size + ' characters, which is too large');
 if (problems.length) throw new Error('Form not built. Fix these first: ' + problems.join(' | '));
-return [{ json: { name: 'SST service form v24 own pages per service', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];
+return [{ json: { name: 'SST service form v24b own pages per service', categories: ['LEAD_GENERATION'], flow_json: JSON.stringify(flow) } }];
