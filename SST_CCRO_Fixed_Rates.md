@@ -78,7 +78,11 @@ The figure before "/ at actual" is also the billed amount, so it goes in the Amo
 | Port Container Inspection | OMR 58.840 / 40ft, at actual, if applicable | 58.840 |
 
 Rules:
-- **Amount = rate x quantity:** per container x number of containers; per shipment once.
+- **Amount = rate x quantity.**
+  - Per container: multiply by the number of containers.
+  - Per shipment (CCRO): multiply by the number of shipments (B/Ls / customs declarations). One shipment means it is charged once; 3 shipments means 3 x 10.770 = 32.310.
+  - The Basis / Remarks column then shows the quantity, for example "OMR 10.770 / at actual, per shipment x 3".
+  - The service form does not ask for the number of shipments, so the bot assumes 1 unless the customer says otherwise (for example "3 B/Ls" or "two shipments") or the sales team changes it.
 - **Container size:** use the 20ft or 40ft figure that matches each box.
 - **Fixed lines** (CCRO, release order, weighment, documentation) go into the total.
 - **"If applicable" lines** (scanning, inspection) show their amount too, but are kept out of the total and marked "if applicable", unless the owner decides otherwise.

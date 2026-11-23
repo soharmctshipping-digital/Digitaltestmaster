@@ -95,7 +95,7 @@
     "one-off CCRO totals"
   ],
   "quotation_rule": {
-    "amount_column": "the rate before \"/ at actual\" is the billed amount: amount = rate x quantity (per container x containers, per shipment once), 3 decimals",
+    "amount_column": "the rate before \"/ at actual\" is the billed amount: amount = rate x quantity (per container x containers; per shipment x number of shipments / B/Ls, default 1), 3 decimals; show the quantity in Basis / Remarks",
     "total": "fixed lines in the total; if-applicable lines show their amount but stay out of the total (marked if applicable)"
   }
 }
