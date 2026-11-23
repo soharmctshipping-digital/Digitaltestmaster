@@ -415,3 +415,35 @@ logged exchanges, and the supporting workflows and data. Nothing was changed, ru
   - No other customer-path step checks for staff. "Issues command" and "Log team conversation" are only on the staff branch, which is switched off.
 - **Published** after the owner said "publish it": SST 1 live version is now `5d593dce-3a5d-4ca2-b3fb-954d14cc5ea0`. To roll back, republish `e50e8895-ecc3-4348-94ab-558656245f1b`.
 - **Check:** a "Hi" from dummy number 999990007250 (execution 2360) still gets the normal welcome and buttons, so ordinary customers are unaffected. Test chat to clear: 999990007250.
+
+## 23 Nov 2026: Automatic import customs clearance quotations (SST 2 draft, NOT published)
+
+Owner's decisions (23 Nov):
+- **Scope:** Sohar FCL + LCL + Muscat air only; everything else goes to sales as before.
+- **Delivery:** priced when the area is on the transport list, otherwise "to be advised by our sales team".
+- **Rollout:** test mode first.
+- **Total:** fixed amounts + 5% VAT on our service charges. "If applicable" and "at actual" lines show their amount but stay out of the total.
+
+What was built in SST 2 (draft only; live is still `386fb9f1-50d0-49eb-82b0-c5f996fd3384`):
+
+- **New "Customs auto quote" (Code) and "Straightforward customs?" (IF)**, between "Existing shipment or complaint?" and "Read Master Index".
+  - Reads the service form from `history_json`.
+  - Quotes only for: English; Import customs clearance; Sea + Sohar Port + FCL (one size, clear number of containers), or Sea + Sohar Port + LCL, or Air + Muscat Airport + Air cargo; dangerous goods "No"; and nothing changed after the form.
+  - Lines come from the fixed rates in `SST_CCRO_Fixed_Rates.md`, plus Bill of Entry 15, Documentation 25, PRO 10, transport lanes and VAT 5% on our charges.
+  - Fills the standard quotation template, so SST R and the SST 3 commands keep working.
+  - Anything else goes to the existing Claude / sales route.
+- **"Turn draft into template fields":** two lines at the top pass a ready customs quote straight on. The rest is unchanged.
+- **New nodes after "PDF ready?":** "Auto customs quote?", "Send to this customer?", "Send quotation to customer" (WhatsApp document, no retry), "Customs send result", "Sales WhatsApp for customs?", "Prepare customs WhatsApp for salesperson" and "WhatsApp the salesperson (customs)" (SST W). Classic quotes follow the old path unchanged.
+- **Records and email:**
+  - "Email lead to salesperson" has customs wording for automatic quotes; `sendTo` is unchanged (test address).
+  - "Save quote v1" status is `Quoted` when sent, otherwise `Draft`.
+  - "Add to Quotes sheet" sets `created_by` to `Rate table`, and `approved` to `Auto` when sent.
+- **Test mode** (`MODE = 'test'` in "Customs auto quote"):
+  - The PDF and the salesperson WhatsApp go only for the owner's tester numbers. Dummy 99999 numbers never get WhatsApp messages.
+  - Real customers' customs quotes are built and emailed to the test address, marked "NOT sent (test mode)".
+  - Go live = set `MODE = 'live'`.
+- **Tests:**
+  - Local: 18 cases (8 quoted, 10 sent to sales), sums checked by hand.
+  - Draft run 2403 (dummy 2 x 40ft, delivery to Rusayl): total OMR 385.500, 2-page PDF on letterhead, email to the test address, WhatsApp skipped.
+- **Test residue to clear:** `sst_quotes` row id 21 (SST-261123-TCQ1), its Google Doc in Quote drafts (bot), and the test email.
+- **Code copies:** `bot_build/customs_quote/` (tester numbers removed).
