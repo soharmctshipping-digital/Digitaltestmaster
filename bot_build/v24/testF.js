@@ -6,12 +6,13 @@ const reader = new Function('$input', fs.readFileSync('v24_Read_message.js', 'ut
 const read = rj => reader({ all: () => [{ json: { body: { entry: [{ changes: [{ value: { metadata: { phone_number_id: '1451398948053197' }, contacts: [{ wa_id: '1', profile: { name: 'x' } }], messages: [{ from: '1', id: 'a', timestamp: '1795085662', type: 'interactive', interactive: { nfm_reply: { response_json: JSON.stringify(rj) } } }] } }] }] } } }] })[0].json.content;
 const S = Object.fromEntries(flow.screens.map(s => [s.id, s]));
 function fill(svc, choose) {
-  const first = S.SERVICE.layout.children[0]['list-items'].find(i => i.id === svc)['on-click-action'].next.name;
+  const items = S.SERVICE.layout.children[0]['list-items'].concat(S.FREIGHT.layout.children[0]['list-items']);
+  const first = items.find(i => i.id === svc)['on-click-action'].next.name;
   let id = first, data = {}, answers = {}, payload;
   for (let guard = 0; guard < 6; guard++) {
     const sc = S[id]; const form = {};
     const walk = ch => { for (const c of ch) {
-      if (c.type === 'If') { const ok = c.condition.split('||').some(p => { const m = p.trim().match(/^\$\{(data|form)\.(\w+)\} (==|!=) '(.*)'$/); const val = (m[1] === 'data' ? data : form)[m[2]]; return m[3] === '==' ? val === m[4] : val !== m[4]; }); if (ok) walk(c.then); continue; }
+      if (c.type === 'If') { const ok = c.condition.split('||').some(p => { const m = p.trim().replace(/^\((.*)\)$/, '$1').match(/^\$\{(data|form)\.(\w+)\} (==|!=) '(.*)'$/); const val = (m[1] === 'data' ? data : form)[m[2]]; return m[3] === '==' ? val === m[4] : val !== m[4]; }); if (ok) walk(c.then); continue; }
       if (!c.name || c.type === 'Footer') continue;
       if (choose[c.name] !== undefined) form[c.name] = choose[c.name];
       else if (c['data-source']) form[c.name] = c.type === 'CheckboxGroup' ? [c['data-source'][0].id] : (c['init-value'] || c['data-source'][0].id);

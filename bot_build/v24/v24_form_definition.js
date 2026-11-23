@@ -134,7 +134,7 @@ const p3 = [
   M('customs', [radio('equip_customs', 'What is being cleared?', [['fcl', 'Full container load (FCL)', 'A 20 foot or 40 foot container'], ['reefer', 'Reefer container', 'Temperature-controlled (chilled or frozen) cargo'], ['lcl', 'Less than container load (LCL)', 'Smaller shipments, charged by volume'], ['vehicles', 'Vehicles', 'Cars, trucks, buses or machinery on wheels'], ['breakbulk', 'Break bulk (pieces)', 'Steel, machinery, crates and similar'], ['project', 'Project or heavy-lift cargo', 'Oversized or very heavy units'], ['air', 'Air cargo', 'Cleared at an airport']]),
     date('eta_customs', 'ETA (Estimated Time of Arrival)', false),
     radio('code_customs', 'Oman customs code?', YNS, 'Does the importer have one?')]),
-  { type: 'If', condition: D + "form.equip_customs} == 'fcl' || " + D + "form.equip_customs} == 'reefer'", then: [radio('size_customs', 'Container size', SIZE)] },
+  { type: 'If', condition: '(' + D + "form.equip_customs} == 'fcl') || (" + D + "form.equip_customs} == 'reefer')", then: [radio('size_customs', 'Container size', SIZE)] },
   DT('via_customs', 'sea', [radio('delivery_sea_customs', 'Delivery after clearance?', YN)]),
   DT('via_customs', 'air', [radio('delivery_air_customs', 'Delivery after clearance?', YN)]),
   F('delivery_sea_customs', 'yes', [ta('delivery_address_customs', 'Delivery address', true, 'Full address, with area and city')]),
@@ -190,7 +190,7 @@ const SVC = ['sea', 'air', 'land', 'customs', 'transit', 'project', 'warehousing
 const SEA_KEYS = ['fcl', 'lcl', 'bulk', 'roro'];
 const svcOfField = n => { if (!n || n === 'notes' || n === 'mode') return 'all'; if (/^(sea_type|far_|pod_oman)/.test(n)) return 'sea'; const t = n.split('_').pop(); if (SVC.indexOf(t) >= 0) return t; if (SEA_KEYS.indexOf(t) >= 0) return 'sea'; return 'all'; };
 const CRE = /^\$\{(data|form)\.(\w+)\} (==|!=) '(.*)'$/;
-const parseCond = c => c.split('||').map(p => p.trim().match(CRE));
+const parseCond = c => c.split('||').map(p => p.trim().replace(/^\((.*)\)$/, '$1').match(CRE));
 const clone = x => JSON.parse(JSON.stringify(x));
 function prune(ch, m) {
   const out = [];
@@ -252,9 +252,14 @@ for (const m of SVC) {
 }
 const SUB = { sea: 'FCL, LCL, bulk or RoRo', air: 'Import or export by air', land: 'Oman and GCC trucks', customs: 'Sea, air or road', transit: 'Transit Bayan', project: 'Heavy and oversized', warehousing: 'Storage, handling, 3PL', containers: 'New or used', agency: 'Vessels, crew, supplies' };
 const TITLE = { sea: 'Sea freight', air: 'Air freight', land: 'Land transport', customs: 'Import customs clearance', transit: 'Transit through Oman', project: 'Project and heavy-lift', warehousing: 'Warehousing and 3PL', containers: 'Buy or lease containers', agency: 'Shipping agency' };
+// WhatsApp allows at most 10 next pages from one page, so the four freight services sit behind one "Freight" choice.
+const FREIGHT = ['sea', 'air', 'land', 'project'], OTHERS = ['customs', 'transit', 'warehousing', 'containers', 'agency'];
+const item = m => ({ id: m, 'main-content': { title: TITLE[m], description: SUB[m] }, 'on-click-action': { name: 'navigate', next: { type: 'screen', name: chains[m][0].id }, payload: {} } });
 const serviceScreen = { id: 'SERVICE', title: 'How can we help?', data: {}, layout: { type: 'SingleColumnLayout', children: [
-  { type: 'NavigationList', name: 'service_list', 'list-items': SVC.map(m => ({ id: m, 'main-content': { title: TITLE[m], description: SUB[m] }, 'on-click-action': { name: 'navigate', next: { type: 'screen', name: chains[m][0].id }, payload: {} } })) }] } };
-const screens = [serviceScreen].concat(...SVC.map(m => chains[m]));
+  { type: 'NavigationList', name: 'service_list', 'list-items': [{ id: 'freight', 'main-content': { title: 'Freight', description: 'Sea, air, land, project' }, 'on-click-action': { name: 'navigate', next: { type: 'screen', name: 'FREIGHT' }, payload: {} } }].concat(OTHERS.map(item)) }] } };
+const freightScreen = { id: 'FREIGHT', title: 'Freight', data: {}, layout: { type: 'SingleColumnLayout', children: [
+  { type: 'NavigationList', name: 'freight_list', 'list-items': FREIGHT.map(item) }] } };
+const screens = [serviceScreen, freightScreen].concat(...SVC.map(m => chains[m]));
 const flow = { version: '7.0', screens };
 // ---------- build check: refuse a form that breaks WhatsApp's limits or mixes services ----------
 const LIMITS = { TextInput: ['label', 20], TextArea: ['label', 20], Dropdown: ['label', 20], RadioButtonsGroup: ['label', 30], CheckboxGroup: ['label', 30], DatePicker: ['label', 40], TextSubheading: ['text', 80], Footer: ['label', 35] };

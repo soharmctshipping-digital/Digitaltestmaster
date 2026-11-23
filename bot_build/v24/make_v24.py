@@ -27,7 +27,7 @@ s = rep(s, "  M('project', [dimField('project', 'Largest piece size', 'Length x 
     radio('crane_project', 'Crane or offloading at site?', YNS, 'Crane, forklift or labour at the delivery site')]),""")
 s = rep(s, "    radio('code_customs', 'Oman customs code?', YNS, 'Does the importer have one?')]),",
 """    radio('code_customs', 'Oman customs code?', YNS, 'Does the importer have one?')]),
-  { type: 'If', condition: D + "form.equip_customs} == 'fcl' || " + D + "form.equip_customs} == 'reefer'", then: [radio('size_customs', 'Container size', SIZE)] },""")
+  { type: 'If', condition: '(' + D + "form.equip_customs} == 'fcl') || (" + D + "form.equip_customs} == 'reefer')", then: [radio('size_customs', 'Container size', SIZE)] },""")
 s = rep(s, "  M('transit', [radio('trucks_transit', 'Do you need our trucks?', [['yes', 'Yes'], ['no', 'No, we have our own']])]),",
 """  DT('equip_transit', 'containers', [radio('return_transit', 'Where does the empty go back?', [['destination', 'Stays at destination'], ['sohar', 'Back to Sohar Port'], ['jebel_ali', 'Jebel Ali'], ['duqm', 'Duqm Port'], ['not_sure', 'Not sure']])]),
   DT('equip_transit', 'vehicles', [radio('ev_transit', 'Electric or hybrid?', EVO)]),
